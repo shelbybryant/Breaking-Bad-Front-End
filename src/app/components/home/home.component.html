@@ -1,0 +1,29 @@
+
+
+<button class="btn btn-info" (click)="toggleVis()"> Click to hide / show</button>
+<div class="grid-container">
+
+<!-- looping -> "let q of quoteList"
+quoteList came from home.component.ts
+quoteList: Quotes[];
+-->
+  <div *ngFor="let q of quoteList" [hidden]="visibility" class="q-card">
+
+ 
+    <!-- looping -> "let todo of todos"
+    todos came from todo-home.componet.ts
+    todos: Object[];
+      -->
+    <h2>Quote #{{q.quote_id}}</h2>
+    <p>{{q.quote}}</p>
+    <p>Author: {{q.author}}</p>
+    <p>Series: {{q.series}}</p>
+    <input [(ngModel)]="q.quote" id="updateBox{{q.quote_id}}" />
+
+
+  </div>
+
+</div>
+
+        
+       
