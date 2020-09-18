@@ -1,25 +1,26 @@
-<!-- nav -->
-<nav class="navbar navbar-expand navbar-dark bg-dark">
-  <div class="navbar-nav">
-    <a class="nav-item nav-link" routerLink="/">About</a>
-    <a class="nav-item nav-link" routerLink="/login">Login</a>
-    <!--
-  <a class="nav-item nav-link" routerLink="/register">Register</a>
-      -->
-  </div>
-</nav>
+  <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+  <div class="bg-img">
+    <form action="/action_page.php" class="container">
+      <h1>Login</h1>
+  
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="email" required>
 
-<!-- main content container -->
-<div class="jumbotron">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-8 offset-sm-2">
-        <router-outlet></router-outlet>
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required>
 
+      <button type="submit" class="btn">Login</button>
+      <a routerLink="/register" class="btn btn-link">Register</a>
+    </form>
+    <nav class="navbar navbar-expand navbar-dark bg-dark">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" routerLink="/Profile">Profile</a>
+        <a class="nav-item nav-link" routerLink="/">Login</a>
+        <a class="nav-item nav-link" routerLink="/register">Register</a>
       </div>
-    </div>
+    </nav>
   </div>
+  
 
-</div>
 
 
