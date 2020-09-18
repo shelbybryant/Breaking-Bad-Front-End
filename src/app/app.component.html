@@ -1,6 +1,6 @@
   <div *ngIf="error" class="alert alert-danger">{{error}}</div>
   <div class="bg-img">
-    <form action="/action_page.php" class="container">
+    <form class="container">
       <h1>Login</h1>
   
       <label for="email"><b>Email</b></label>
@@ -12,14 +12,14 @@
       <button type="submit" class="btn">Login</button>
       <a routerLink="/register" class="btn btn-link">Register</a>
     </form>
-    <nav class="navbar navbar-expand navbar-dark bg-dark">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" routerLink="/Profile">Profile</a>
-        <a class="nav-item nav-link" routerLink="/">Login</a>
-        <a class="nav-item nav-link" routerLink="/register">Register</a>
-      </div>
-    </nav>
   </div>
+  <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" routerLink="/profile">Profile</a>
+      <a class="nav-item nav-link" routerLink="/">Login</a>
+      <a class="nav-item nav-link" routerLink="/register">Register</a>
+    </div>
+  </nav>
   
 
 
