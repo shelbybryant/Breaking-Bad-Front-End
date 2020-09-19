@@ -1,35 +1,32 @@
 <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+<div class="row">
+  <div class="col‑xs‑12">
+   <ul class="nav nav‑pills">
+    <li routerLinkActive="active"> <a [routerLink]="['/login']" >Login</a></li>
+    <li routerLinkActive="active"> <a [routerLink]="['/home']" >User Home</a></li>
+    <li routerLinkActive="active"> <a [routerLink]="['/profile']" >User Profile</a></li>
+    <li routerLinkActive="active"> <a [routerLink]="['/register']" >Register New User</a></li>
+   </ul>
+ </div>
+</div>
+<div class="bg-img">
+  <form class="container">
+    <h1>Login</h1>
 
-<h2>Login (login.component.html)</h2>
+    <label for="email"><b>Email</b></label>
+    <input type="text" placeholder="Enter Email" name="email" required>
 
-<form>
-  <div class="form-group">
-    <label for="username">Username</label>
-    <input type="text" class="form-control" />
-    <div class="invalid-feedback">
-      <div>Username is required</div>
-    </div>
-  </div>
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" required>
 
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password" class="form-control" />
-    <div class="invalid-feedback">
-      <div>Password is required</div>
-    </div>
-  </div>
+    <button class="btn">Login</button>
+    <a routerLink="/register" class="btn btn-link">Register</a>
+  </form>
+</div>
 
-  <div class="form-group">
-    <button class="btn btn-primary">
-      <span class=" mr-1"></span>  <!-- spinner-border spinner-border-sm -->
-      Login
-    </button>
 
-    <!--
-  <a routerLink="/register" class="btn btn-link">Register</a>
 
-      -->
-  </div>
 
-</form>
+
+
 
