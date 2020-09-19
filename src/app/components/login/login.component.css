@@ -11,7 +11,7 @@ body, html {
     background-image: url("/assets/bb.jpg");
   
     /* Control the height of the image */
-    min-height: 380px;
+    min-height: 500px;
   
     /* Center and scale the image nicely */
     background-position: left;
