@@ -1,1 +1,31 @@
+<div *ngIf="error" class="alert alert-danger">{{error}}</div>
+<div class="row">
+  <div class="col‑xs‑12">
+   <ul class="nav nav‑pills">
+    <li routerLinkActive="active"> <a [routerLink]="['/login']" >Login</a></li>
+    <li routerLinkActive="active"> <a [routerLink]="['/home']" >User Home Page</a></li>
+    <li routerLinkActive="active"> <a [routerLink]="['/profile']" >User Profile</a></li>
+   </ul>
+ </div>
+</div>
+<div class="bg-img">
+  <form class="container">
+    <h1>Login</h1>
+
+    <label for="email"><b>Email</b></label>
+    <input type="text" placeholder="Enter Email" name="email" required>
+
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" required>
+
+    <button class="btn">Login</button>
+    <a routerLink="/register" class="btn btn-link">Register</a>
+  </form>
+</div>
+
+
+
+
+
+
 
