@@ -9,17 +9,17 @@
    </ul>
  </div>
 </div>
-<div class="bg-img">
-  <form class="container">
+<div class="bg-img container">
+  <form class="logincontainer">
     <h1>Login</h1>
 
     <label for="email"><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" required>
+    <input type="text" placeholder="Enter Email" name="email" [(ngModel)]="email"required>
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
+    <input type="password" placeholder="Enter Password" name="psw" [(ngModel)]="password" required>
 
-    <button class="btn">Login</button>
+    <button (click)=checkLogin() class="btn">Login</button>
     <a routerLink="/register" class="btn btn-link">Register</a>
   </form>
 </div>
