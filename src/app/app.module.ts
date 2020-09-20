@@ -12,6 +12,7 @@ import { TriviagameComponent } from './components/triviagame/triviagame.componen
 import { FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
     ProfileComponent,
     RegisterComponent,
     TriviagameComponent,
-    UserComponent
+    UserComponent,
+    LogoutComponent
    
   ],
   imports: [
