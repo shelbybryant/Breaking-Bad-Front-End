@@ -7,11 +7,12 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
+import { UserComponent } from './components/user/user.component';
+import { TriviagameComponent } from './components/triviagame/triviagame.component';
+import { FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
-import { TriviagameComponent } from './triviagame/triviagame.component';
-
-
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -20,13 +21,16 @@ import { TriviagameComponent } from './triviagame/triviagame.component';
     HomeComponent,
     ProfileComponent,
     RegisterComponent,
-    TriviagameComponent
+    TriviagameComponent,
+    UserComponent,
+    LogoutComponent
    
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
 
   ],
   providers: [],
