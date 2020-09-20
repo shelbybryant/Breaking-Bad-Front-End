@@ -1,0 +1,17 @@
+<!-- iterate over users to get screenName, runningTotal, and gamesTotal-->
+<table border="1">
+    <thead></thead>
+    <tr>
+      <th>screenName</th>
+      <th>runningTotal</th>
+      <th>gamesTotal</th>
+      </tr>
+    
+    <tbody>
+        <tr *ngFor="let u of users">
+            <td>{{u.screenName}}</td>
+            <td>{{u.runningTotal}}</td>
+            <td>{{u.gamesTotal}}</td>
+            </tr>
+    </tbody>
+      </table>
