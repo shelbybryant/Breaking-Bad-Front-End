@@ -4,9 +4,12 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
+
+import { TriviagameComponent } from './components/triviagame/triviagame.component';
 import { UserComponent } from './components/user/user.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
+
 
 
 const routes: Routes = [
@@ -43,6 +46,10 @@ const routes: Routes = [
     path: 'user',
     component: UserComponent,
     canActivate:[AuthGuardService]
+  },
+  {
+    path: 'triviagame',
+    component: TriviagameComponent
   },
   {
     path: '*',

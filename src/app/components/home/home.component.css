@@ -1,13 +1,70 @@
-/*
 
-.grid-container {
-  margin-top: 3em;
-  display: inline-grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 5em;
+#home-comp {
+  /**/background-color: aqua;
+  margin: 0;
+  /**/padding: 10px;
 }
 
-.q-card {
+#col-9 {
+  padding: 1rem;
+  border: 1px solid #d8dde6;
+  background-color: aliceblue;
+  /*height: 100vh;*/
+}
+
+#col-3 {
+  padding: 1rem;
+  border: 1px solid #d8dde6;
+  background-color: antiquewhite;
+  /*height: 100vh;*/
+}
+
+#row-1 {
+  border: 1px solid #d8dde6;
+  height: 30vh;
+}
+
+#row-2 {
+  border: 1px solid #d8dde6;
+  height: 6vh;
+}
+
+#row-3 {
+  border: 1px solid #d8dde6;
+  /*height: 60vh; */
+}
+
+.MY-BTN {
+  height: 40px;
+  text-align: center;
+  box-shadow: inset 0px 1px 0px 0px #9fb4f2;
+  background: linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+  background-color: #7892c2;
+  border-radius: 6px;
+  border: 1px solid #4e6096;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 8px 24px;
+  margin: 8px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #283966;
+}
+
+  .MY-BTN:hover {
+    background: linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
+    background-color: #476e9e;
+  }
+
+  .MY-BTN:active {
+    position: relative;
+    top: 1px;
+  }
+
+#q-card {
   text-align: center;
   margin-left: 2em;
   border-width: 0.1em;
@@ -15,6 +72,14 @@
   border-radius: 0.5em;
   width: 20em;
   height: 15em;
-  background-color: #81BEF7;
+  background-color: #81BEF7; /*ligh blue*/
+  display: inline-grid;
 }
-*/
+
+#by-char-domain {
+  display: none;
+}
+
+.invalid-feedback {
+  color: red;
+}

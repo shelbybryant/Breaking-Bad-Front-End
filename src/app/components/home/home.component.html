@@ -1,4 +1,3 @@
-nav 
 <nav class="navbar navbar-expand navbar-dark bg-dark">
   <div class="navbar-nav">
     <a class="nav-item nav-link" routerLink="/home"> User Home</a>
@@ -8,30 +7,155 @@ nav
   </div>
 </nav>
 
-<button class="btn btn-info" (click)="toggleVis()"> Click to hide / show</button>
-<div class="grid-container">
+<div id="home-comp" >
+  <div class="row">
 
-<!-- looping -> "let q of quoteList"
-quoteList came from home.component.ts
-quoteList: Quotes[];
+    <!-- left column Side -->
+    <div class="col-3" id="col-3">
+      Leader board
+      <h3>By Quote</h3>
+
+      <button type="button" class="MY-BTN col" id="submit-btn" (click)="toggleVis()"> Random 3 quotes</button>
+      <div *ngFor="let q of randomQ1" [hidden]="visibility" id="q-card" class="col">
+        <h2>Random Quote ID: #{{q.quote_id}}</h2>
+        <p>Quote: {{q.quote}}</p>
+        <p>Author: {{q.author}}</p>
+        <p>Series: {{q.series}}</p>
+      </div>
+      <div *ngFor="let q of randomQ2" [hidden]="visibility" id="q-card" class="col">
+        <h2>Random Quote ID: #{{q.quote_id}}</h2>
+        <p>Quote: {{q.quote}}</p>
+        <p>Author: {{q.author}}</p>
+        <p>Series: {{q.series}}</p>
+      </div>
+      <div *ngFor="let q of randomQ3" [hidden]="visibility" id="q-card" class="col">
+        <h2>Random Quote ID: #{{q.quote_id}}</h2>
+        <p>Quote: {{q.quote}}</p>
+        <p>Author: {{q.author}}</p>
+        <p>Series: {{q.series}}</p>
+      </div>
+
+    </div>
+    <!-- right column Side -->
+    <div class="col-9" id="col-9">
+      <!-- row 1-->
+      <div class="row" id="row-1">images</div>
+      <!-- row 2-->
+      <div class="row" id="row-2">
+        <!-- buttons-->
+        <button type="button" class="MY-BTN" id="by-quote-btn"> Start Game</button>
+        <button type="button" class="MY-BTN" id="by-char-btn" (click)="byRandomCharBtn($event)">random char</button>
+        <div id="game-result">*** yes, you got it / no, you are wrong / currrent score XXX like that message goes here</div>
+      </div>
+      <!-- row 3 -->
+      <div id="row-3" class="row" >
+        <!-- staring from left, first card that list available characters-->
+        <div class="card" style="width: 18rem;">
+          <div class="card-header text-left">
+            <p>Selected a character:</p>
+            <!-- Form starts -->
+            <form #myForm="ngForm" (submit)="submitForm(myForm)" novalidate>
+              <div>
+                <ul class="list-group">
+                  <li class="list-group-item" *ngFor="let item of itemsList">
+                    <input type="radio" name="characterid" value="{{item.characterid}}" ngModel required />
+                    {{item.charactername}}
+                  </li>
+                </ul>
+              </div>
+
+              <div class="invalid-feedback" *ngIf="isSelectedCharacter && myForm.invalid">
+                <p>*** Please select a character.</p>
+              </div>
+              <!-- select character button Button -->
+              <button type="submit" class="MY-BTN">Select A Character</button>
+            </form>
+          </div>
+        </div> <!-- end of first card div-->
+
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="https://vignette.wikia.nocookie.net/breakingbad/images/f/f7/BCS_S4_Kim_Wexler.jpg/revision/latest?cb=20180824195845"
+               alt="Card image cap">
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">ID: </li>
+              <li class="list-group-item">Name: </li>
+              <li class="list-group-item">Nick Name:</li>
+            </ul>
+          </div>
+
+
+
+        </div> <!-- starting left, end of 2nd card div-->
+
+        <div class="card" style="width: 30rem;">
+          <div class="card-header">
+            Quiz:
+          </div>
+          <table class="card-table table">
+            <tbody>
+              <tr>
+                <td rowspan="2">Question #1:</td>
+                <td>Is this character alive at series end?</td>
+              </tr>
+              <tr>
+                <td class="not-first-cell">data 2</td>
+              </tr>
+              <tr></tr>
+              <tr>
+                <td rowspan="2">Question #2:</td>
+                <td class="not-first-cell">What season(s) is this character in?</td>
+              </tr>
+              <tr>
+                <td class="not-first-cell">data 2</td>
+              </tr>
+              <tr>
+                <td rowspan="4">Question #3:</td>
+                <td> Which quote belongs to this character?</td>
+              </tr>
+              <tr>
+                <td class="not-first-cell">data 1</td>
+              </tr>
+              <tr>
+                <td class="not-first-cell">data 2</td>
+              </tr>
+              <tr>
+                <td class="not-first-cell">data 3</td>
+              </tr>
+            </tbody>
+          </table>
+        </div> <!-- starting left, end of 3rd card div-->
+
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <div class="card-header text-left">
+              <!-- when by character button clicked-->
+              <div id="by-char-domain">
+                <a class="MY-BTN" id="select-rand-char" (click)="selectRandomCharacter()">Select Random character</a>
+                <div *ngFor="let c of selectedChar" id="q-card">
+                  <h2>Character ID: #{{c.char_id}}</h2>
+                  <p>Name: {{c.name}}</p>
+                  <p>Nick Name: {{c.nickname}}</p>
+                </div>
+              </div> <!-- end of by-char-domain-->
+            </div>
+          </div>
+        </div> <!-- starting left, end of 4th card div-->
+
+      </div> <!-- end of row 3 div-->
+    </div> <!-- end of col 9 div-->
+  </div> <!-- end of row div-->
+</div> <!-- end of home-comp div-->
+
+
+<!-- card examples
+https://codepen.io/MartijnCuppens/pen/JMyOgv
+    -->
+<!-- radio button manipulation
+https://stackblitz.com/edit/angular-radio-buttons-demo-template-driven-form?file=src%2Fapp%2Fapp.component.html
 -->
-  <div *ngFor="let q of quoteList" [hidden]="visibility" class="q-card">
-
- 
-    <!-- looping -> "let todo of todos"
-    todos came from todo-home.componet.ts
-    todos: Object[];
-      -->
-    <h2>Quote #{{q.quote_id}}</h2>
-    <p>{{q.quote}}</p>
-    <p>Author: {{q.author}}</p>
-    <p>Series: {{q.series}}</p>
-    <input [(ngModel)]="q.quote" id="updateBox{{q.quote_id}}" />
-
-
-  </div>
-
-</div>
-
-        
-       
+<!-- login example
+https://stackblitz.com/edit/angular-10-registration-login-example-wavnhb?file=src%2Fapp%2Fapp.component.ts
+-->
