@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/services/http-client.service';
+import  {HttpClientService } from 'src/app/services/http-client.service';
 
 @Component({
   selector: 'app-register',
@@ -8,9 +10,22 @@ import { Component, OnInit } from '@angular/core';
 export class RegisterComponent implements OnInit {
 
   error: string;
+  user: User = new User("","","","");
 
-  constructor() {}
+  constructor(
+    private httpClientService: HttpClientService
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit() {
+  }
+
+  registerUser(): void {
+    this.httpClientService.registerUser(this.user)
+        .subscribe( data => {
+          alert("New User registered successfully.");
+        });
+
+  };
+
 
 }
