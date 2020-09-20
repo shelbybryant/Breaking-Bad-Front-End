@@ -9,7 +9,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
 
 import { HttpClientModule } from '@angular/common/http';
-import { TriviagameComponent } from './triviagame/triviagame.component';
+import { FormsModule } from '@angular/forms';
+
 
 
 
@@ -19,14 +20,16 @@ import { TriviagameComponent } from './triviagame/triviagame.component';
     LoginComponent,
     HomeComponent,
     ProfileComponent,
-    RegisterComponent,
-    TriviagameComponent
+    RegisterComponent
+    
    
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
+
 
   ],
   providers: [],
