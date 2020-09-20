@@ -10,22 +10,24 @@ import  {HttpClientService } from 'src/app/services/http-client.service';
 export class RegisterComponent implements OnInit {
 
   error: string;
-  user: User = new User("","","","");
+  user: User = new User("","","","","","");
+  users: User[];
 
   constructor(
     private httpClientService: HttpClientService
   ) { }
 
   ngOnInit() {
-  }
-
-  registerUser(): void {
-    this.httpClientService.registerUser(this.user)
-        .subscribe( data => {
-          alert("New User registered successfully.");
-        });
-
-  };
+    this.httpClientService.getUsers().subscribe(
+      response =>{this.users = response;}
+     );
+  }    
+  registerUser(user): void {
+      this.httpClientService.registerUser(this.user)
+          .subscribe( data => {
+            alert("New User registered successfully.");
+          });
+        }
 
 
 }

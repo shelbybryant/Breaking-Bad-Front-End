@@ -20,12 +20,16 @@ export class HttpClientService {
 
   constructor(
     private httpClient:HttpClient
-  ) { 
+  ) {}
 
-    getUser()
-  {
-    
+  getUsers(){
+      console.log("test call");
+      return this.httpClient.get<User[]>('http://localhost:4200/user');
   }
+
+  public registerUser(user) {
+      return this.httpClient.post<User>("http://localhost:4200/user", user);
+    }
 
   
   }
