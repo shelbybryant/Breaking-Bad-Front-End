@@ -8,22 +8,12 @@ import { HttpClientService } from 'src/app/services/http-client.service';
 })
 export class UserComponent implements OnInit {
 
-  users:string[];
-   
-  constructor(
-    private httpClientService:HttpClientService
-  ) { }
+    _id: String;
+    name: String;
+    email: String;
+    password: String;
+    scrname: String;
 
-  ngOnInit() {
-    this.httpClientService.getUsers().subscribe(
-     response =>this.handleSuccessfulResponse(response),
-    );
-  }
-
-handleSuccessfulResponse(response)
-{
-    this.users=response;
-}
-
+    ngOnInit(){}
 
 }

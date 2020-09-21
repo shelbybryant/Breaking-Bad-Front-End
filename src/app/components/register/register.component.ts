@@ -22,12 +22,19 @@ export class RegisterComponent implements OnInit {
       response =>{this.users = response;}
      );
   }    
-  registerUser(user): void {
-      this.httpClientService.registerUser(this.user)
-          .subscribe( data => {
-            alert("New User registered successfully.");
-          });
-        }
+
+  // Sign-in
+  registerUser(user: User) {
+    return this.http.post<any>(`${this.endpoint}/login`, user)
+      .subscribe((res: any) => {
+        localStorage.setItem('access_token', res.token)
+        this.getUserProfile(res._id).subscribe((res) => {
+          this.currentUser = res;
+          this.router.navigate(['user-profile/' + res.msg._id]);
+        })
+        alert("New User registered successfully.")
+      })
+  }
 
 
 }
