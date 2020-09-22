@@ -8,7 +8,6 @@ import { Component, OnInit } from '@angular/core';
 export class UserComponent implements OnInit {
 
     _id: String;
-    name: String;
     email: String;
     password: String;
     screenName: String;

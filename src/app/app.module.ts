@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -29,6 +30,7 @@ import { AuthInterceptor } from './services/authinterceptor.service';
   ],
   imports: [
     AppRoutingModule,
+    RouterModule,
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,

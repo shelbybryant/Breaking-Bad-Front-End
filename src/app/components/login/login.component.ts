@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit{
   loginForm: FormGroup;
   endpoint: string = 'http://localhost:4200/';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
+  currentUser = {};
 
   constructor(
     public fb: FormBuilder,
@@ -49,7 +50,7 @@ export class LoginComponent implements OnInit{
         .subscribe((res: any) => {
           localStorage.setItem('access_token', res.token)
           this.authenticationService.getUserProfile(res._id).subscribe((res) => {
-            this.authenticationService.currentUser = res;
+            this.currentUser = res;
             this.router.navigate(['profile/' + res.msg._id]);
           })
         })
