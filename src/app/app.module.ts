@@ -9,10 +9,12 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UserComponent } from './components/user/user.component';
 import { TriviagameComponent } from './components/triviagame/triviagame.component';
-import { FormsModule } from '@angular/forms';
-
-import { HttpClientModule } from '@angular/common/http';
 import { LogoutComponent } from './components/logout/logout.component';
+
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './services/authinterceptor.service';
+
 
 @NgModule({
   declarations: [
@@ -24,16 +26,20 @@ import { LogoutComponent } from './components/logout/logout.component';
     TriviagameComponent,
     UserComponent,
     LogoutComponent
-   
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     HttpClientModule,
+    ReactiveFormsModule,
     FormsModule
 
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

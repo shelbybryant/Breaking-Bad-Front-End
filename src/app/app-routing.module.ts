@@ -6,7 +6,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UserComponent } from './components/user/user.component';
 import { LogoutComponent } from './components/logout/logout.component';
-import { AuthGuardService } from 'src/app/services/auth-guard.service';
+import { AuthGuard } from 'src/app/services/auth-guard.service';
 
 
 const routes: Routes = [
@@ -22,27 +22,27 @@ const routes: Routes = [
   {
     path: 'logout',
     component: LogoutComponent,
-    canActivate:[AuthGuardService]
+    canActivate:[AuthGuard]
   },
   {
     path: 'home',
     component: HomeComponent,
-    canActivate:[AuthGuardService]
+    canActivate:[AuthGuard]
   },
   {
     path: 'profile',
     component: ProfileComponent,
-    canActivate:[AuthGuardService]
+    canActivate:[AuthGuard]
   },
   {
     path: 'register',
     component: RegisterComponent,
-    canActivate:[AuthGuardService]
+    canActivate:[AuthGuard]
   },
   {
     path: 'user',
     component: UserComponent,
-    canActivate:[AuthGuardService]
+    canActivate:[AuthGuard]
   },
   {
     path: '*',

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/services/http-client.service';
-import  {HttpClientService } from 'src/app/services/http-client.service';
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { Router } from '@angular/router';
+import { AuthenticationService } from './../../shared/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -8,33 +9,32 @@ import  {HttpClientService } from 'src/app/services/http-client.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
-  error: string;
-  user: User = new User("","","","","","");
-  users: User[];
-
+  registerForm: FormGroup;
   constructor(
-    private httpClientService: HttpClientService
-  ) { }
-
-  ngOnInit() {
-    this.httpClientService.getUsers().subscribe(
-      response =>{this.users = response;}
-     );
-  }    
-
-  // Sign-in
-  registerUser(user: User) {
-    return this.http.post<any>(`${this.endpoint}/login`, user)
-      .subscribe((res: any) => {
-        localStorage.setItem('access_token', res.token)
-        this.getUserProfile(res._id).subscribe((res) => {
-          this.currentUser = res;
-          this.router.navigate(['user-profile/' + res.msg._id]);
-        })
-        alert("New User registered successfully.")
-      })
+    public fb: FormBuilder,
+    public authenticationService: AuthenticationService,
+    public router: Router
+  ) {
+    this.registerForm = this.fb.group({
+      email: [''],
+      password: [''],
+      scrname: ['']
+    })
   }
 
-
+  ngOnInit() {}
+  
+  registerUser() {
+    this.authenticationService.createNewUser(this.registerForm.value).subscribe((res) => {
+      if (res.result) {
+        this.registerForm.reset()
+        this.router.navigate(['login']);
+      }
+    })
+  }
 }
+
+
+
+  
+  

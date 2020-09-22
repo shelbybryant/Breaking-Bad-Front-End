@@ -34,9 +34,9 @@ export class AuthenticationService {
     return this.http.post<any>(`${this.endpoint}/login`, user)
       .subscribe((res: any) => {
         localStorage.setItem('access_token', res.token)
-        this.getUserProfile(res._id).subscribe((res) => {
+        this.getUserHome(res._id).subscribe((res) => {
           this.currentUser = res;
-          this.router.navigate(['user-profile/' + res.msg._id]);
+          this.router.navigate(['login' + res.msg._id]);
         })
         alert("New User registered successfully.")
       })
@@ -50,9 +50,9 @@ export class AuthenticationService {
       return this.http.post<any>(`${this.endpoint}/login`, user)
         .subscribe((res: any) => {
           localStorage.setItem('access_token', res.token)
-          this.getUserProfile(res._id).subscribe((res) => {
+          this.getUserHome(res._id).subscribe((res) => {
             this.currentUser = res;
-            this.router.navigate(['user-profile/' + res.msg._id]);
+            this.router.navigate(['home/' + res.msg._id]);
           })
         })
     }
@@ -81,8 +81,8 @@ export class AuthenticationService {
     }
 
   // User profile
-  getUserProfile(id): Observable<any> {
-    let api = `${this.endpoint}/user-profile/${id}`;
+  getUserHome(id): Observable<any> {
+    let api = `${this.endpoint}/home/${id}`;
     return this.http.get(api, { headers: this.headers }).pipe(
       map((res: Response) => {
         return res || {}

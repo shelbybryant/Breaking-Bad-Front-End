@@ -6,7 +6,7 @@ body, html {
     box-sizing: border-box;
   }
   
-  .bg-img {
+  .reg-img {
     /* The image used */
     background-image: url("/assets/bb.jpg");
   

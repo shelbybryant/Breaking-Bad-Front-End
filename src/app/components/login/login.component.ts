@@ -13,25 +13,33 @@ import { AuthenticationService } from 'src/app/services/authentication-service.s
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   error: string;
-  email = 'batman@email.com'
-  password = ''
-  invalidLogin = false
+  loginForm: FormGroup;
 
-  constructor(private router: Router,
-    private loginservice: AuthenticationService) { }
+  constructor(
+      public fb: FormBuilder, 
+      public authenticationService: AuthenticationService, 
+      private router: Router) {
 
-  ngOnInit() {}
-
-  checkLogin() {
-    if (this.loginservice.authenticate(this.email, this.password)
-    ) {
-      this.router.navigate([''])
-      this.invalidLogin = false
-    } else
-      this.invalidLogin = true
+      this.loginForm = this.fb.group({
+        email: [''],
+        password: ['']
+      });
   }
 
+  login() {
+      const val = this.form.value;
+
+      if (val.email && val.password) {
+        this.authService.login(val.email, val.password)
+            .subscribe(
+              () => {
+                  console.log("User is logged in");
+                  this.router.navigateByUrl('/');
+                    }
+            );
+      }
+  }
 }
