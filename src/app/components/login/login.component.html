@@ -1,17 +1,17 @@
 <div *ngIf="error" class="alert alert-danger">{{error}}</div>
-<div class="row">
+<div class="navbar navbar-expand navbar-dark bg-dark">
   <div class="col‑xs‑12">
-   <ul class="nav nav‑pills">
+   <ul class="navbar-nav">
     <li routerLinkActive="active"> <a [routerLink]="['/login']" >Login</a></li>
     <li *ngIf="loginService.isUserLoggedIn()"><a [routerLink]="['/home']" >User Home</a></li>
     <li *ngIf="loginService.isUserLoggedIn()"><a [routerLink]="['/profile']" >User Profile</a></li>
-    <li *ngIf="loginService.isUserLoggedIn()"><a [routerLink]="['/register']" >Register New User</a></li>
+    <li routerLinkActive="active"><a [routerLink]="['/register']" >Register New User</a></li>
     <li *ngIf="loginService.isUserLoggedIn()"><a [routerLink]="['/logout']" >Logout</a></li>
    </ul>
  </div>
 </div>
 <div class="bg-img container">
-  <form class="container">
+  <form class="container form-login" [formGroup]="loginForm" (ngSubmit)="loginUser()">
     <h1>Login</h1>
 
     <label for="email"><b>Email</b></label>

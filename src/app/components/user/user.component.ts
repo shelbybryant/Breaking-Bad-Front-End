@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClientService } from 'src/app/services/http-client.service';
 
 @Component({
   selector: 'app-user',
@@ -12,7 +11,7 @@ export class UserComponent implements OnInit {
     name: String;
     email: String;
     password: String;
-    scrname: String;
+    screenName: String;
 
     ngOnInit(){}
 
