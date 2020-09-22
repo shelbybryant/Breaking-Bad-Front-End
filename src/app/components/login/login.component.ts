@@ -17,7 +17,7 @@ import { AuthenticationService } from 'src/app/services/authentication-service.s
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit{
-
+  error:string;
   loginForm: FormGroup;
   endpoint: string = 'http://localhost:4200/';
   headers = new HttpHeaders().set('Content-Type', 'application/json');

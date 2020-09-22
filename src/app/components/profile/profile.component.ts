@@ -10,7 +10,6 @@
   })
   
   export class ProfileComponent implements OnInit {
-    currentUser: Object = {};
   
     constructor(
       public authenticationService: AuthenticationService,
@@ -18,7 +17,7 @@
     ) {
       let id = this.actRoute.snapshot.paramMap.get('id');
       this.authenticationService.getUserProfile(id).subscribe(res => {
-        this.currentUser = res.msg;
+        this.authenticationService.currentUser = res.msg;
       })
     }
   

@@ -10,6 +10,7 @@ import { UserComponent } from 'src/app/components/user/user.component';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  error:string;
   registerForm: FormGroup;
   endpoint: string = 'http://localhost:4200/';
   constructor(
@@ -20,7 +21,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.fb.group({
       email: [''],
       password: [''],
-      scrname: ['']
+      screenName: ['']
     })
   }
 
