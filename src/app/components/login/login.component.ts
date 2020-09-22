@@ -1,12 +1,6 @@
-/*
-* This component takes user login input and passes it to authenticationService
-* mehtod: checkLogin()- This method checks if the user credentials are correct 
-* by calling the previously created AuthenticationService
-*/
-
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthenticationService } from 'src/app/services/authentication-service.service';
+import { AuthService } from 'src/app/services/authentication.service';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -15,23 +9,38 @@ import { AuthenticationService } from 'src/app/services/authentication-service.s
 })
 export class LoginComponent implements OnInit {
 
-  error: string;
-  email = 'batman@email.com'
-  password = ''
-  invalidLogin = false
+  form: any = {};
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
 
-  constructor(private router: Router,
-    private loginservice: AuthenticationService) { }
+  constructor(private authService: AuthService, private tokenStorage: TokenStorageService) { }
 
-  ngOnInit() {}
+  ngOnInit(): void {
+    if (this.tokenStorage.getToken()) {
+      this.isLoggedIn = true;
+    }
+  }
 
-  checkLogin() {
-    if (this.loginservice.authenticate(this.email, this.password)
-    ) {
-      this.router.navigate([''])
-      this.invalidLogin = false
-    } else
-      this.invalidLogin = true
+  onSubmit(): void {
+    this.authService.login(this.form).subscribe(
+      data => {
+        this.tokenStorage.saveToken(data.accessToken);
+        this.tokenStorage.saveUser(data);
+
+        this.isLoginFailed = false;
+        this.isLoggedIn = true;
+        this.reloadPage();
+      },
+      err => {
+        this.errorMessage = err.error.message;
+        this.isLoginFailed = true;
+      }
+    );
+  }
+
+  reloadPage(): void {
+    window.location.reload();
   }
 
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/services/http-client.service';
-import  {HttpClientService } from 'src/app/services/http-client.service';
+import { AuthService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-register',
@@ -9,25 +8,27 @@ import  {HttpClientService } from 'src/app/services/http-client.service';
 })
 export class RegisterComponent implements OnInit {
 
-  error: string;
-  user: User = new User("","","","","","");
-  users: User[];
+  form: any = {};
+  isSuccessful = false;
+  isRegisterFailed = false;
+  errorMessage = '';
 
-  constructor(
-    private httpClientService: HttpClientService
-  ) { }
+  constructor(private authService: AuthService) { }
 
-  ngOnInit() {
-    this.httpClientService.getUsers().subscribe(
-      response =>{this.users = response;}
-     );
-  }    
-  registerUser(user): void {
-      this.httpClientService.registerUser(this.user)
-          .subscribe( data => {
-            alert("New User registered successfully.");
-          });
-        }
+  ngOnInit(): void {
+  }
 
-
+  onSubmit(): void {
+    this.authService.register(this.form).subscribe(
+      data => {
+        console.log(data);
+        this.isSuccessful = true;
+        this.isRegisterFailed = false;
+      },
+      err => {
+        this.errorMessage = err.error.message;
+        this.isRegisterFailed = true;
+      }
+    );
+  }
 }
