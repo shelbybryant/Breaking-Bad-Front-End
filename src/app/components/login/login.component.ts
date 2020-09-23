@@ -16,18 +16,14 @@ import { AuthenticationService } from 'src/app/services/authentication-service.s
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit{
-  error:string;
+export class LoginComponent implements OnInit {
+  error: string;
   loginForm: FormGroup;
-  endpoint: string = 'http://localhost:4200/';
+  endpoint: string = 'http://localhost:8080/BreakingBad';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser = {};
 
-  constructor(
-    public fb: FormBuilder,
-    public authenticationService: AuthenticationService,
-    public router: Router
-  ) {
+  constructor(public fb: FormBuilder, public authenticationService: AuthenticationService, public router: Router) {
     this.loginForm = this.fb.group({
       email: [''],
       password: ['']
@@ -46,13 +42,28 @@ export class LoginComponent implements OnInit{
   * 2. gets JWT token from the API response and stores in the local storage
   */
   login(user: UserComponent) {
-      return this.authenticationService.getHttp().post<any>(`${this.endpoint}/login`, user)
-        .subscribe((res: any) => {
-          localStorage.setItem('access_token', res.token)
-          this.authenticationService.getUserProfile(res._id).subscribe((res) => {
-            this.currentUser = res;
-            this.router.navigate(['profile/' + res.msg._id]);
-          })
-        })
-    }
+    console.log("user:", user);
+    return this.authenticationService.getHttp().post<any>(`${this.endpoint}/login`, user)
+      .subscribe((res: any) => {
+        console.log("\n\nServer response:", res);
+
+        // localStorage.setItem('access_token', res.token)
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('userId', res.userId);
+        //Set current user for this class
+        this.currentUser = res;
+        
+        //Set auth service's current user
+        this.authenticationService.currentUser = res;
+
+        
+        // this.router.navigate(['profile/' + res.msg._id]);
+        this.router.navigate([`profile/${res.userId}`]);
+
+        // this.authenticationService.getUserProfile(res._id).subscribe((res) => {
+        //   this.currentUser = res;
+        //   this.router.navigate(['profile/' + res.msg._id]);
+        // })
+      })
+  }
 }
