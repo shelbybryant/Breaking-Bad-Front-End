@@ -15,6 +15,8 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './services/authinterceptor.service';
+import { UserQuotesComponent } from './components/user-quotes/user-quotes.component';
+
 
 
 @NgModule({
@@ -26,7 +28,8 @@ import { AuthInterceptor } from './services/authinterceptor.service';
     RegisterComponent,
     TriviagameComponent,
     UserComponent,
-    LogoutComponent
+    LogoutComponent,
+    UserQuotesComponent
   ],
   imports: [
     AppRoutingModule,

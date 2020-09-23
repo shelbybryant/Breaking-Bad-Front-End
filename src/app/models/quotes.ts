@@ -1,17 +1,17 @@
 export class Quotes {
 
-  quote_id: number;   
+  quoteId: number; 
+  userId: number;  
   quote: string;    
-  author: string;
+  authorFName: string;
+  authorLName: string;
 
-  constructor(
-    quote_id: number,
-    quote: string,
-    author: string
-  ) {
-    this.quote_id = quote_id;
+  constructor(quoteId: number, userId: number, quote: string, authorFName: string, authorLName: string) {
+    this.quoteId = quoteId;
+    this.userId = userId;
     this.quote = quote;
-    this.author = author
+    authorFName = authorFName;
+    authorLName = authorLName;
   }
 
 

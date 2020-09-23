@@ -7,10 +7,16 @@ import { RegisterComponent } from './components/register/register.component';
 import { UserComponent } from './components/user/user.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { AuthGuard } from 'src/app/services/auth-guard.service';
+import { UserQuotesComponent } from './components/user-quotes/user-quotes.component';
 
 
 const routes: Routes = [
 
+  {
+    path: 'profile/:id',
+    component: UserQuotesComponent,
+    canActivate:[AuthGuard]
+  },
   {
     path: '',
     component: LoginComponent

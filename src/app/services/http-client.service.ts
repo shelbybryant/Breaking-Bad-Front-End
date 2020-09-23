@@ -12,6 +12,9 @@ export class User{
   ) {}
 }
 
+export class UserQuotes {
+  constructor(quoteId: number, userId: number, quote: string, authorFName: string, authorLName: string) {}
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -31,6 +34,10 @@ export class HttpClientService {
     let email='batman@email.com'
     let password='password'
     return this.httpClient.post<User>("http://localhost:4200/user", user);
+  }
+
+  pullSavedQuotes(userId:number) {
+    return this.httpClient.get<UserQuotes[]>('http://localhost:8080/BreakingBad/quote' + userId);
   }
 }
 
