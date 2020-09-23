@@ -1,9 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
+
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import {RouterModule} from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from 'src/app/components/login/login.component';
@@ -25,7 +27,8 @@ import { InterceptorService } from 'src/app/helpers/interceptor.service';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule
   ],
   providers: [InterceptorService],
   bootstrap: [AppComponent]

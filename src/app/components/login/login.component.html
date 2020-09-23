@@ -2,11 +2,11 @@
 <div class="row">
   <div class="col‑xs‑12">
    <ul class="nav nav‑pills">
-    <li *ngIf="isLoggedIn" [routerLink]="['/login']" >Login</a></li>
-    <li *ngIf="isLoggedIn" [routerLink]="['/home']" >User Home</a></li>
-    <li *ngIf="isLoggedIn" [routerLink]="['/profile']" >User Profile</a></li>
-    <li <a [routerLink]="['/register']" >Register New User</a></li>
-    <li *ngIf="isLoggedIn"  [routerLink]="['/logout']" >Logout</a></li>
+    <li routerLinkActive="active"> <a [routerLink]="['/login']" >Login</a></li>
+    <li *ngIf="isLoggedIn"><a [routerLink]="['/home']" >User Home</a></li>
+    <li *ngIf="isLoggedIn"><a [routerLink]="['/profile']" >User Profile</a></li>
+    <li routerLinkActive="active"> <a [routerLink]="['/register']" >Register New User</a></li>
+    <li *ngIf="isLoggedIn"><a [routerLink]="['/logout']" >Logout</a></li>
    </ul>
  </div>
 </div>
@@ -18,8 +18,8 @@
     <input type="text" class="form-control" placeholder="Enter Email" name="email" [(ngModel)]="form.email"required #email="ngModel">
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" class="form-control" placeholder="Enter Password (at least 6 characters)" name="psw" [(ngModel)]="password" required #password="ngModel">
-    <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+    <input type="password" class="form-control" placeholder="Enter Password" name="psw" [ngModel]="password" required #password="ngModel">
+
     <button (click)=checkLogin() class="btn">Login</button>
     <a routerLink="/register" class="btn btn-link">Register</a>
   </form>

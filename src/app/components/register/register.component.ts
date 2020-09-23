@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/services/authentication.service';
 })
 export class RegisterComponent implements OnInit {
 
+  error:string;
   form: any = {};
   isSuccessful = false;
   isRegisterFailed = false;
