@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { LogoutComponent } from './logout/logout.component';
+import { CarouselComponent } from './components/carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { LogoutComponent } from './logout/logout.component';
     RegisterComponent
     TriviagameComponent,
     UserComponent,
-    LogoutComponent
+    LogoutComponent,
+    CarouselComponent
    
   ],
   imports: [
