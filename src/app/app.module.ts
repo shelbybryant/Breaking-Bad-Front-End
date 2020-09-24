@@ -1,3 +1,5 @@
+//did not use - could not figure out how to generate token and configure in Java
+
 import { BrowserModule } from '@angular/platform-browser';
 
 import { NgModule } from '@angular/core';
