@@ -2,11 +2,11 @@
 <div class="row">
   <div class="col‑xs‑12">
    <ul class="nav nav‑pills">
-    <li *ngIf="loginService.isUserLoggedIn()" [routerLink]="['/login']" >Login</a></li>
-    <li *ngIf="loginService.isUserLoggedIn()" [routerLink]="['/home']" >User Home</a></li>
-    <li *ngIf="loginService.isUserLoggedIn()" [routerLink]="['/profile']" >User Profile</a></li>
-    <li *ngIf="loginService.isUserLoggedIn()" [routerLink]="['/register']" >Register New User</a></li>
-    <li *ngIf="loginService.isUserLoggedIn()" [routerLink]="['/logout']" >Logout</a></li>
+    <li> <a> [routerLink]="['/login']" >Login</a></li>
+    <li ><a>[routerLink]="['/home']" >User Home</a></li>
+    <li ><a>[routerLink]="['/profile']" >User Profile</a></li>
+    <li><a>[routerLink]="['/register']" >Register New User</a></li>
+    <li ><a>[routerLink]="['/logout']" >Logout</a></li>
    </ul>
  </div>
 </div>
@@ -14,11 +14,11 @@
   <form class="logincontainer">
     <h1>Login</h1>
 
-    <label for="email"><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" [(ngModel)]="email"required>
+    <label for="username"><b>username</b></label>
+    <input type="text" placeholder="Enter Username" name="username" required>
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" [(ngModel)]="password" required>
+    <input type="password" placeholder="Enter Password" name="psw" required>
 
     <button (click)=checkLogin() class="btn">Login</button>
     <a routerLink="/register" class="btn btn-link">Register</a>

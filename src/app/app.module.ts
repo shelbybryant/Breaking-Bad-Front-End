@@ -12,8 +12,9 @@ import { TriviagameComponent } from './components/triviagame/triviagame.componen
 import { FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-import { LogoutComponent } from './logout/logout.component';
+import { LogoutComponent } from './components/logout/logout.component';
+import { AuthenticationService } from './services/authentication-service.service';
+import { AuthGuardService } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { LogoutComponent } from './logout/logout.component';
     LoginComponent,
     HomeComponent,
     ProfileComponent,
-    RegisterComponent
+    RegisterComponent,
     TriviagameComponent,
     UserComponent,
     LogoutComponent
@@ -34,7 +35,7 @@ import { LogoutComponent } from './logout/logout.component';
     FormsModule
 
   ],
-  providers: [],
+  providers: [AuthenticationService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -10,7 +10,7 @@ import  {HttpClientService } from 'src/app/services/http-client.service';
 export class RegisterComponent implements OnInit {
 
   error: string;
-  user: User = new User("","","","","","");
+  user: User = new User("","","","","");
   users: User[];
 
   constructor(

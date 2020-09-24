@@ -15,9 +15,9 @@ export class AuthenticationService {
 
   constructor() { }
 
-  authenticate(email, password) {
-    if (email === "batman@email.com" && password === "password") {
-      sessionStorage.setItem('email', email)
+  authenticate(username, password) {
+    if (username === "batman" && password === "password") {
+      sessionStorage.setItem('username', username)
       return true;
     } else {
       return false;
@@ -25,12 +25,12 @@ export class AuthenticationService {
   }
 
   isUserLoggedIn() {
-    let user = sessionStorage.getItem('email')
+    let user = sessionStorage.getItem('username')
     console.log(!(user === null))
     return !(user === null)
   }
 
   logOut() {
-    sessionStorage.removeItem('email')
+    sessionStorage.removeItem('username')
   }
 }

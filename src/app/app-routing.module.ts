@@ -10,8 +10,6 @@ import { UserComponent } from './components/user/user.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
 
-
-
 const routes: Routes = [
 
   {
@@ -49,7 +47,8 @@ const routes: Routes = [
   },
   {
     path: 'triviagame',
-    component: TriviagameComponent
+    component: TriviagameComponent,
+    canActivate:[AuthGuardService]
   },
   {
     path: '*',
