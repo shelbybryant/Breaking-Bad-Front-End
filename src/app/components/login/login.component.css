@@ -1,14 +1,10 @@
-body, html {
-    height: 100%;
-  }
-  
-  * {
+* {
     box-sizing: border-box;
-  }
+}
   
   .bg-img {
     /* The image used */
-    background-image: url("/assets/bb.jpg");
+    
   
     /* Control the height of the image */
     min-height: 500px;
@@ -21,14 +17,17 @@ body, html {
   }
   
   /* Add styles to the form container */
-  .container {
-    position: absolute;
-    right: 0;
-    margin: 20px;
-    max-width: 300px;
-    padding: 16px;
-    background-color: white;
-  }
+.container {
+  position: absolute;
+  right: 0;
+  margin: 20px;
+  max-width: 500px;
+  padding: 16px;
+  background-color: #f8f9fa;
+}
+.row{
+  height:50px;
+}
   
   /* Full-width input fields */
     input[type=text], input[type=password] {

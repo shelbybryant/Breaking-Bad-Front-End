@@ -4,13 +4,13 @@
     "\\src",
     "\\src\\app",
     "\\src\\app\\components",
-    "\\src\\app\\components\\home",
-    "\\src\\app\\components\\login",
-    "\\src\\app\\components\\profile",
+    "\\src\\app\\components\\logout",
     "\\src\\app\\components\\register",
-    "\\src\\app\\services",
-    "\\src\\assets"
+    "\\src\\app\\components\\triviagame",
+    "\\src\\app\\components\\user",
+    "\\src\\app\\models",
+    "\\src\\app\\services"
   ],
-  "SelectedNode": "\\src\\app\\components\\home\\home.component.css",
+  "SelectedNode": "\\src\\app\\models\\item.ts",
   "PreviewInSolutionExplorer": false
 }

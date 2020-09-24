@@ -1,3 +1,4 @@
+
 /*
 * This component takes user login input and passes it to authenticationService
 * mehtod: checkLogin()- This method checks if the user credentials are correct 
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
   invalidLogin = false
 
   constructor(private router: Router,
-    private loginservice: AuthenticationService) { }
+    public loginservice: AuthenticationService) { }
 
   ngOnInit() {}
 
