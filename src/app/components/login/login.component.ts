@@ -11,6 +11,7 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 import { Router } from '@angular/router';
 import { UserComponent } from 'src/app/components/user/user.component';
 import { AuthenticationService } from 'src/app/services/authentication-service.service';
+import { GetSavedQuoteService } from 'src/app/services/get-saved-quote.service';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,7 @@ export class LoginComponent implements OnInit {
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser = {};
 
-  constructor(public fb: FormBuilder, public authenticationService: AuthenticationService, public router: Router) {
+  constructor(public fb: FormBuilder, public authenticationService: AuthenticationService, public router: Router, public quoteService: GetSavedQuoteService) {
     this.loginForm = this.fb.group({
       email: [''],
       password: ['']
@@ -53,6 +54,8 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('userId', res.userId);
         //Set current user for this class
         this.currentUser = res;
+        
+        this.quoteService.setUserID(res.userId);
         
         //Set auth service's current user
         this.authenticationService.currentUser = res;

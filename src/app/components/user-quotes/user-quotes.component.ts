@@ -16,7 +16,7 @@ export class UserQuotesComponent implements OnInit {
   //class Quotes is the model to follow
 
 
-  constructor(private quoteser: GetSavedQuoteService) { }
+  constructor(public quoteser: GetSavedQuoteService) { }
   // visibility:boolean = true;
  
   // toggleVis(){
@@ -24,7 +24,7 @@ export class UserQuotesComponent implements OnInit {
   // }
 
   // quote: string;
-  userId:number;
+  //userId:number;
   quotes:Quotes[];
 
 
@@ -33,7 +33,7 @@ export class UserQuotesComponent implements OnInit {
   }
 
   getQuotes() {
-    this.quoteser.pullSavedQuotes(this.userId).subscribe(
+    this.quoteser.pullSavedQuotes().subscribe(
       (response: Quotes[]) => {
         this.quotes = response;
       }

@@ -12,7 +12,7 @@ import { UserComponent } from './components/user/user.component';
 import { TriviagameComponent } from './components/triviagame/triviagame.component';
 import { LogoutComponent } from './components/logout/logout.component';
 
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './services/authinterceptor.service';
 import { UserQuotesComponent } from './components/user-quotes/user-quotes.component';

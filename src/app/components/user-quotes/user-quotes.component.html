@@ -1,26 +1,9 @@
-
-    <!-- trying the demo way...-->
-    <!-- <div class="grid-container">
-        <div *ngFor="let q of Quotes" [hidden]="visibility" class="quotes-card">
-            <h2>Quote #{{q.quoteId}}</h2>
-            <p>{{q.userId}}</p>
-            <p>{{q.authorFName}}</p>
-            <p>{{q.authorLName}}</p>
-            <p>{{q.quote}</p>
-        </div>
-    </div>
-    <br>
-    <br>
-    <button (click)="toggleVis()">Click to Show/Hide</button> -->
-
-    <!--trying yet another way...-->
 <h2 class="text-center"> Your Saved Quotes!</h2>
 
     <table class="table">
         <thead>
         <tr>
             <th scope="col">Quote Id</th>
-            <th scope="col">Your User Id</th>
             <th scope="col">Character First Name</th>
             <th scope="col">Character Last Name</th>
             <th scope="col">Quote</th>
@@ -29,7 +12,6 @@
         <tbody>
             <tr *ngFor="let q of quotes">
                 <td>{{q.quoteId}}</td>
-                <td>{{q.userId}}</td>
                 <td>{{q.authorFName}}</td>
                 <td>{{q.authorLName}}</td>
                 <td>{{q.quote}}</td>
