@@ -7,7 +7,7 @@
   </div>
 </nav>
 
-<div id="home-comp" >
+<div id="home-comp">
   <div class="row">
 
     <!-- left column Side -->
@@ -34,122 +34,138 @@
         <p>Author: {{q.author}}</p>
         <p>Series: {{q.series}}</p>
       </div>
-
     </div>
     <!-- right column Side -->
     <div class="col-9" id="col-9">
       <!-- row 1-->
-      <div class="row" id="row-1">images</div>
+      <div class="row" id="row-1">
+        images
+      </div>
       <!-- row 2-->
       <div class="row" id="row-2">
         <!-- buttons-->
         <button type="button" class="MY-BTN" id="by-quote-btn"> Start Game</button>
-        <button type="button" class="MY-BTN" id="by-char-btn" (click)="byRandomCharBtn($event)">random char</button>
         <div id="game-result">*** yes, you got it / no, you are wrong / currrent score XXX like that message goes here</div>
       </div>
       <!-- row 3 -->
-      <div id="row-3" class="row" >
+      <div id="row-3" class="row">
         <!-- staring from left, first card that list available characters-->
         <div class="card" style="width: 18rem;">
           <div class="card-header text-left">
-            <p>Selected a character:</p>
-            <!-- Form starts -->
-            <form #myForm="ngForm" (submit)="submitForm(myForm)" novalidate>
+            Select a character:
+            <p *ngIf="isSelectedCharacter" [ngClass]="'success'">
+              *** Select character Form submitted successfully.
+            </p>
+            <!-- Select Character Form starts --------------------------------------------------------------->
+            <form #myForm="ngForm" (ngSubmit)="submitRadioButtonForm(myForm)">
               <div>
                 <ul class="list-group">
                   <li class="list-group-item" *ngFor="let item of itemsList">
+                    <!-- itemsList: Item[] = ITEMS; -->
                     <input type="radio" name="characterid" value="{{item.characterid}}" ngModel required />
                     {{item.charactername}}
                   </li>
                 </ul>
+                <div *ngIf=" myForm.submitted && !isSelectedCharacter" [ngClass]="'error'">
+                  *** Select a character.
+                </div>
               </div>
 
-              <div class="invalid-feedback" *ngIf="isSelectedCharacter && myForm.invalid">
-                <p>*** Please select a character.</p>
-              </div>
               <!-- select character button Button -->
-              <button type="submit" class="MY-BTN">Select A Character</button>
+              <button type="submit" class="MY-BTN" id="radio-btn">Select A Character</button>
             </form>
           </div>
         </div> <!-- end of first card div-->
 
-        <div class="card" style="width: 18rem;">
-          <img class="card-img-top" src="https://vignette.wikia.nocookie.net/breakingbad/images/f/f7/BCS_S4_Kim_Wexler.jpg/revision/latest?cb=20180824195845"
-               alt="Card image cap">
+        <div *ngFor="let c of selectedCharacter" class="card" style="width: 18rem;">
+          <img class="card-img-top" id="char-img" [src]="c.img" alt="Card image cap">
           <div class="card-body">
             <ul class="list-group list-group-flush">
-              <li class="list-group-item">ID: </li>
-              <li class="list-group-item">Name: </li>
-              <li class="list-group-item">Nick Name:</li>
+              <li class="list-group-item"><bold>ID: # </bold>{{c.char_id}}</li>
+              <li class="list-group-item"><bold>Name: </bold>{{c.name}}</li>
+              <li class="list-group-item"><bold>Nick Name: </bold>{{c.nickname}}</li>
             </ul>
           </div>
-
-
-
         </div> <!-- starting left, end of 2nd card div-->
 
-        <div class="card" style="width: 30rem;">
+        <div class="card" style="width: 64rem;">
           <div class="card-header">
             Quiz:
+            <p *ngIf="isValidFormSubmitted" [ngClass]="'success'">
+              *** Form submitted successfully.
+            </p>
           </div>
-          <table class="card-table table">
-            <tbody>
-              <tr>
-                <td rowspan="2">Question #1:</td>
-                <td>Is this character alive at series end?</td>
-              </tr>
-              <tr>
-                <td class="not-first-cell">data 2</td>
-              </tr>
-              <tr></tr>
-              <tr>
-                <td rowspan="2">Question #2:</td>
-                <td class="not-first-cell">What season(s) is this character in?</td>
-              </tr>
-              <tr>
-                <td class="not-first-cell">data 2</td>
-              </tr>
-              <tr>
-                <td rowspan="4">Question #3:</td>
-                <td> Which quote belongs to this character?</td>
-              </tr>
-              <tr>
-                <td class="not-first-cell">data 1</td>
-              </tr>
-              <tr>
-                <td class="not-first-cell">data 2</td>
-              </tr>
-              <tr>
-                <td class="not-first-cell">data 3</td>
-              </tr>
-            </tbody>
-          </table>
+          <!-- Select Answers Form starts ----------------------------------------------------------------->
+          <form #questionsForm="ngForm" (ngSubmit)="onQuestionFormSubmit(questionsForm)">
+            <table class="card-table table">
+              <tbody>
+                <tr>
+                  <td rowspan="2">Question #1:</td>
+                  <td>Is this character alive at series end?</td>
+                </tr>
+                <tr>
+                  <td class="not-first-cell">
+                    <input type="radio" value="Alive" name="question1" [(ngModel)]="question_1_answer" required #question1="ngModel"> Alive
+                    <input type="radio" value="Deceased" name="question1" [(ngModel)]="question_1_answer" required #question1="ngModel"> Deceased
+                    <input type="radio" value="Other" name="question1" [(ngModel)]="question_1_answer" required #question1="ngModel"> Unknown
+                    <div *ngIf="question1.invalid && questionsForm.submitted && !isValidFormSubmitted" [ngClass]="'error'">
+                      *** question-1 answer required.
+                    </div>
+                  </td>
+                </tr>
+                <tr></tr>
+                <tr>
+                  <td rowspan="2">Question #2:</td>
+                  <td class="not-first-cell">What season(s) is this character in?</td>
+                </tr>
+                <tr>
+                  <td class="not-first-cell">
+                    <input type="radio" value="All" name="question2" [(ngModel)]="question_2_answer" required #question2="ngModel"> All
+                    <input type="radio" value="Some" name="question2" [(ngModel)]="question_2_answer" required #question2="ngModel"> Some
+                    <div *ngIf="question2.invalid && questionsForm.submitted && !isValidFormSubmitted" [ngClass]="'error'">
+                      *** question-2 answer required.
+                    </div>
+                  </td>
+                </tr>
+                
+                <tr>
+                  <td rowspan="5">Question #3:</td>
+                  <td> Which quote belongs to this character?</td>
+                </tr>
+                <tr>
+                  <td class="not-first-cell">
+                    A :<div id="quoteA"></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="not-first-cell">
+                    B :<div id="quoteB"></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="not-first-cell">
+                    C :<div id="quoteC"></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="radio" value="A" name="question3" [(ngModel)]="question_3_answer" required #question3="ngModel">A
+                    <input type="radio" value="B" name="question3" [(ngModel)]="question_3_answer" required #question3="ngModel">B
+                    <input type="radio" value="C" name="question3" [(ngModel)]="question_3_answer" required #question3="ngModel">C
+                    <div *ngIf="question3.invalid && questionsForm.submitted && !isValidFormSubmitted" [ngClass]="'error'">
+                      *** question-3 answer required.
+                    </div>
+                  </td>
+                </tr>
+                <tr><td colspan="2"><button id="submit-quiz">Submit Quiz</button></td></tr>
+              </tbody>
+            </table>
+          </form>
         </div> <!-- starting left, end of 3rd card div-->
-
-        <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <div class="card-header text-left">
-              <!-- when by character button clicked-->
-              <div id="by-char-domain">
-                <a class="MY-BTN" id="select-rand-char" (click)="selectRandomCharacter()">Select Random character</a>
-                <div *ngFor="let c of selectedChar" id="q-card">
-                  <h2>Character ID: #{{c.char_id}}</h2>
-                  <p>Name: {{c.name}}</p>
-                  <p>Nick Name: {{c.nickname}}</p>
-                </div>
-              </div> <!-- end of by-char-domain-->
-            </div>
-          </div>
-        </div> <!-- starting left, end of 4th card div-->
-
       </div> <!-- end of row 3 div-->
     </div> <!-- end of col 9 div-->
   </div> <!-- end of row div-->
 </div> <!-- end of home-comp div-->
-
-
 <!-- card examples
 https://codepen.io/MartijnCuppens/pen/JMyOgv
     -->
@@ -158,4 +174,29 @@ https://stackblitz.com/edit/angular-radio-buttons-demo-template-driven-form?file
 -->
 <!-- login example
 https://stackblitz.com/edit/angular-10-registration-login-example-wavnhb?file=src%2Fapp%2Fapp.component.ts
+-->
+<!-- various buttons examples
+https://www.concretepage.com/angular-2/angular-2-radio-button-and-checkbox-example
+-->
+<!-- random selected card for testing
+
+   <button type="button" class="MY-BTN" id="by-char-btn" (click)="byRandomCharBtn($event)">random char</button>
+
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <div class="card-header text-left">
+          <div id="by-char-domain">
+            <a class="MY-BTN" id="select-rand-char" (click)="selectRandomCharacter()">Select Random character</a>
+            <div *ngFor="let c of selectedChar" id="q-card">
+              <h2>Character ID: #{{c.char_id}}</h2>
+              <p>Name: {{c.name}}</p>
+              <p>Nick Name: {{c.nickname}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
 -->

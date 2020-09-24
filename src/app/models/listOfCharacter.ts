@@ -29,7 +29,7 @@ export const ITEMS: Item[] = [
     characterid: 3
   },
   {
-    quoteauthor: 'Henry Schrader',
+    quoteauthor: 'Hank Schrader', 
     charactername: 'Henry Schrader',
     characterid: 5
   },

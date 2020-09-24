@@ -83,3 +83,13 @@
 .invalid-feedback {
   color: red;
 }
+.error {
+  color: red;
+}
+
+.success {
+  color: green;
+}
+ul {
+  list-style-type: none;
+}
