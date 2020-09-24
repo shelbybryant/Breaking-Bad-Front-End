@@ -19,7 +19,6 @@ import { UserQuotesComponent } from './components/user-quotes/user-quotes.compon
 
 
 
-
 @NgModule({
   declarations: [
     AppComponent,

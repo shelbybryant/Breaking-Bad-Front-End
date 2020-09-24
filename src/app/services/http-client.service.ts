@@ -27,13 +27,13 @@ export class HttpClientService {
 
   getUsers(){
       console.log("test call");
-      return this.httpClient.get<User[]>('http://localhost:4200/user');
+      return this.httpClient.get<User[]>('http://localhost:4200/BreakingBad/user');
   }
   
   public registerUser(user) {
     let email='batman@email.com'
     let password='password'
-    return this.httpClient.post<User>("http://localhost:4200/user", user);
+    return this.httpClient.post<User>("http://localhost:4200/BreakingBad/user", user);
   }
 
   pullSavedQuotes(userId:number) {
