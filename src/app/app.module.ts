@@ -18,6 +18,10 @@ import { AuthInterceptor } from './services/authinterceptor.service';
 import { UserQuotesComponent } from './components/user-quotes/user-quotes.component';
 
 
+<<<<<<< HEAD
+=======
+import { HttpClientModule } from '@angular/common/http';
+>>>>>>> master
 
 @NgModule({
   declarations: [
@@ -28,8 +32,13 @@ import { UserQuotesComponent } from './components/user-quotes/user-quotes.compon
     RegisterComponent,
     TriviagameComponent,
     UserComponent,
+<<<<<<< HEAD
     LogoutComponent,
     UserQuotesComponent
+=======
+    
+   
+>>>>>>> master
   ],
   imports: [
     AppRoutingModule,
