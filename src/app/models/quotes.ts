@@ -10,8 +10,8 @@ export class Quotes {
     this.quoteId = quoteId;
     this.userId = userId;
     this.quote = quote;
-    authorFName = authorFName;
-    authorLName = authorLName;
+    this.authorFName = authorFName;
+    this.authorLName = authorLName;
   }
 
 

@@ -13,31 +13,31 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserQuotesComponent implements OnInit {
 
-  // headers = ["Quote Id", "Your User Id", "Character First Name", "Character Last Name", "Quote"];
-
-  //<button (click)="toggleVis()">Click to Show/Hide</button>
-
   //class Quotes is the model to follow
 
 
-  constructor(private http: HttpClient) { }
-  visibility:boolean = true;
+  constructor(private quoteser: GetSavedQuoteService) { }
+  // visibility:boolean = true;
  
-  toggleVis(){
-    this.visibility = !this.visibility;
-  }
+  // toggleVis(){
+  //   this.visibility = !this.visibility;
+  // }
 
-  quotes: string[];
+  // quote: string;
   userId:number;
+  quotes:Quotes[];
 
-  pullSavedQuotes(userId:number) {
-   
-    return this.http.get<Quotes>('http://localhost:8080/BreakingBad/quote' + userId); 
-   }
 
   ngOnInit(): void {
-
+    this.getQuotes();
   }
 
+  getQuotes() {
+    this.quoteser.pullSavedQuotes(this.userId).subscribe(
+      (response: Quotes[]) => {
+        this.quotes = response;
+      }
+    )
+  }
 
 }

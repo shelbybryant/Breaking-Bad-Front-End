@@ -13,9 +13,9 @@ import { UserQuotesComponent } from './components/user-quotes/user-quotes.compon
 const routes: Routes = [
 
   {
-    path: 'profile/:id',
+    path: 'profile/:userId',
     component: UserQuotesComponent,
-    canActivate:[AuthGuard]
+    
   },
   {
     path: '',
@@ -36,7 +36,7 @@ const routes: Routes = [
     canActivate:[AuthGuard]
   },
   {
-    path: 'profile/:id',
+    path: 'profile/:userId',
     component: ProfileComponent,
     canActivate:[AuthGuard]
   },

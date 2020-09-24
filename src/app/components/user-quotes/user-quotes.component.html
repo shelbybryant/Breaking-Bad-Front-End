@@ -1,17 +1,3 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
-    
-  </head>
-  <body>
-
 
     <!-- trying the demo way...-->
     <!-- <div class="grid-container">
@@ -28,8 +14,10 @@
     <button (click)="toggleVis()">Click to Show/Hide</button> -->
 
     <!--trying yet another way...-->
-    <table class="center">
-        <thead></thead>
+<h2 class="text-center"> Your Saved Quotes!</h2>
+
+    <table class="table">
+        <thead>
         <tr>
             <th scope="col">Quote Id</th>
             <th scope="col">Your User Id</th>
@@ -37,7 +25,7 @@
             <th scope="col">Character Last Name</th>
             <th scope="col">Quote</th>
           </tr>
-        
+        </thead>
         <tbody>
             <tr *ngFor="let q of quotes">
                 <td>{{q.quoteId}}</td>
@@ -45,16 +33,10 @@
                 <td>{{q.authorFName}}</td>
                 <td>{{q.authorLName}}</td>
                 <td>{{q.quote}}</td>
-                </tr>
+              </tr>
         </tbody>
-          </table>
-          <button (click)="pullSavedQuotes()">Show Quotes!</button>
+     </table>
+          <!-- <button (click)="pullSavedQuotes()">Show Quotes!</button> -->
 
-
-
-    
-   
   
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-  </body>
-</html>
+
