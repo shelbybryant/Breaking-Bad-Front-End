@@ -7,9 +7,9 @@
 
 import { Component, OnInit } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
-import { FormBuilder, FormGroup, NgForm } from "@angular/forms";
+import { FormGroup, FormBuilder } from "@angular/forms";
+import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { UserComponent } from 'src/app/components/user/user.component';
 import { AuthenticationService } from 'src/app/services/authentication-service.service';
 
 @Component({
@@ -19,52 +19,51 @@ import { AuthenticationService } from 'src/app/services/authentication-service.s
 })
 export class LoginComponent implements OnInit {
   error: string;
-  loginForm: FormGroup;
   endpoint: string = 'http://localhost:8080/BreakingBad';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser = {};
 
-  constructor(public fb: FormBuilder, public authenticationService: AuthenticationService, public router: Router) {
-    this.loginForm = this.fb.group({
+  constructor(public fb: FormBuilder, public authService: AuthenticationService, public router: Router) {
+    loginForm = this.fb.group({
       email: [''],
       password: ['']
     })
   }
 
-  ngOnInit() { }
-
-  onSubmit(f: NgForm) {
-    console.log(f.value);  // { first: '', last: '' }
-    console.log(f.valid);  // false
-  }
-
-  loginUser() {
-    this.login(this.loginForm.value)
-    this.loginForm.reset
-  }
+  OnSubmit() {
+    var formData: any = new FormData();
+    formData.append("email", this.loginForm.get('email').value);
+    formData.append("password", this.loginForm.get('password').value);
   
-  login(user: UserComponent) {
-    console.log("user:", user);
-    return this.authenticationService.getHttp().post<any>(`${this.endpoint}/login`, user)
-      .subscribe((res: any) => {
-        console.log("\n\nServer response:", res);
-
-        localStorage.setItem('isLoggedIn', 'true');
-        localStorage.setItem('userId', res.userId);
-        //Set current user for this class
-        this.currentUser = res;
-        
-        //Set auth service's current user
-        this.authenticationService.currentUser = res;
-
-        
-        // this.router.navigate(['profile/' + res.msg._id]);
-        this.router.navigate([`profile/${res.userId}`]);
-
-        // this.authenticationService.getUserProfile(res._id).subscribe((res) => {
-        //   this.currentUser = res;
-        //   this.router.navigate(['profile/' + res.msg._id]);
-        // })
-      })
+    this.authService.getHttp().post('http://localhost:4200/BreakingBad/', formData).subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error)
+    )
   }
+  ngOnInit() { }
+  
+  /*
+    if (user == "null"){
+      catchError(this.handleError);
+    } else {
+      localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem('user', res.user);
+      //Set current user for this class
+      this.currentUser = res;
+      // this.router.navigate(['profile/' + res.msg._id]);
+      this.router.navigate(['home']);
+    }
+}
+  
+const hdrs = new HttpHeaders({
+  'Content-Type': 'application/x-www-form-urlencoded'
+});
+
+const data = new FormData();
+data.append("username", username);
+data.append("password", password);
+// ...
+return this.http.post<any>(this.authUrl, data, {headers: headers});
+ 
+*/ 
 }
