@@ -18,13 +18,14 @@ import { AuthenticationService } from 'src/app/services/authentication-service.s
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  loginForm: FormGroup;
   error: string;
   endpoint: string = 'http://localhost:8080/BreakingBad';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser = {};
 
   constructor(public fb: FormBuilder, public authService: AuthenticationService, public router: Router) {
-    loginForm = this.fb.group({
+    this.loginForm = this.fb.group({
       email: [''],
       password: ['']
     })
@@ -34,7 +35,7 @@ export class LoginComponent implements OnInit {
     var formData: any = new FormData();
     formData.append("email", this.loginForm.get('email').value);
     formData.append("password", this.loginForm.get('password').value);
-  
+    console.log(formData);
     this.authService.getHttp().post('http://localhost:4200/BreakingBad/', formData).subscribe(
       (response) => console.log(response),
       (error) => console.log(error)
