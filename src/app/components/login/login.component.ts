@@ -19,7 +19,6 @@ import { AuthenticationService } from 'src/app/services/authentication-service.s
 })
 export class LoginComponent implements OnInit {
   error: string;
-<<<<<<< HEAD
   loginForm: FormGroup;
   endpoint: string = 'http://localhost:8080/BreakingBad';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
@@ -37,24 +36,6 @@ export class LoginComponent implements OnInit {
   loginUser() {
     this.login(this.loginForm.value)
     this.loginForm.reset
-=======
-  email = 'batman@email.com'
-  password = ''
-  invalidLogin = false
-
-  constructor(private router: Router,
-    public loginservice: AuthenticationService) { }
-
-  ngOnInit() {}
-
-  checkLogin() {
-    if (this.loginservice.authenticate(this.email, this.password)
-    ) {
-      this.router.navigate([''])
-      this.invalidLogin = false
-    } else
-      this.invalidLogin = true
->>>>>>> master
   }
   /*
   * This method 
@@ -76,7 +57,6 @@ export class LoginComponent implements OnInit {
         //Set auth service's current user
         this.authenticationService.currentUser = res;
 
-<<<<<<< HEAD
         
         // this.router.navigate(['profile/' + res.msg._id]);
         this.router.navigate([`profile/${res.userId}`]);
@@ -88,6 +68,3 @@ export class LoginComponent implements OnInit {
       })
   }
 }
-=======
-}
->>>>>>> master
