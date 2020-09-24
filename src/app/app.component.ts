@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
+<<<<<<< HEAD
+import { AuthenticationService } from "src/app/services/authentication-service.service";
+
+=======
 import { NgForm } from '@angular/forms';
+>>>>>>> master
 
 @Component({
   selector: 'app-root',
@@ -7,5 +12,9 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Project2V3';
+  constructor(public authenticationService: AuthenticationService) { }
+
+  logout() {
+    this.authenticationService.logout()
+  }
 }

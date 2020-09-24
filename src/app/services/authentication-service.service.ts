@@ -7,30 +7,76 @@
  */
 
 import { Injectable } from '@angular/core';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
+  endpoint: string = 'http://localhost:8080/BreakingBad';
+  headers = new HttpHeaders().set('Content-Type', 'application/json');
+  currentUser = {};
 
-  constructor() { }
 
-  authenticate(email, password) {
-    if (email === "batman@email.com" && password === "password") {
-      sessionStorage.setItem('email', email)
-      return true;
-    } else {
-      return false;
+  constructor(private http: HttpClient, public router: Router) { }
+
+  getHttp() {
+    return this.http;
+  }
+  /*
+  * This method accesses the token via local storage getItem() method.
+  */
+  getToken() {
+    return localStorage.getItem('access_token');
+  }
+  /*
+  * This method returns true if the user is logged in else returns false.
+  */
+  get isLoggedIn(): boolean {
+    return localStorage.getItem('isLoggedIn') === 'true';
+    // let authToken = localStorage.getItem('access_token');
+    // return (authToken !== null) ? true : false;
+  }
+
+  /*
+  * This method removes the token from local storage and logs the user out
+  */
+  logout() {
+    let removeToken = localStorage.removeItem('isLoggedIn');
+    // let removeToken = localStorage.removeItem('access_token');
+    
+    if (removeToken == null) {
+      this.router.navigate(['login']);
     }
   }
 
-  isUserLoggedIn() {
-    let user = sessionStorage.getItem('email')
-    console.log(!(user === null))
-    return !(user === null)
+  // User profile
+  getUserProfile(id): Observable<any> {
+    let bb = `${this.endpoint}/profile/${id}`;
+    //let bb = `${this.endpoint}/home`;
+
+    return this.http.get(bb, { headers: this.headers }).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
   }
 
-  logOut() {
-    sessionStorage.removeItem('email')
+  // Error 
+  handleError(error: HttpErrorResponse) {
+    let msg = '';
+    if (error.error instanceof ErrorEvent) {
+      // client-side error
+      msg = error.error.message;
+    } else {
+      // server-side error
+      msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    return throwError(msg);
   }
+
 }

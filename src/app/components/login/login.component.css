@@ -1,4 +1,13 @@
+<<<<<<< HEAD
+body, html {
+    height: 100vh;
+    width: 100vw;
+  }
+  
+  * {
+=======
 * {
+>>>>>>> master
     box-sizing: border-box;
 }
   
@@ -9,14 +18,24 @@
     /* Control the height of the image */
     min-height: 500px;
   
-    /* Center and scale the image nicely */
+    /* Center and scale the image nicely*/
     background-position: left;
     background-repeat: no-repeat;
     background-size: cover;
-    position: relative;
+    position: relative; 
   }
   
   /* Add styles to the form container */
+<<<<<<< HEAD
+  .logincontainer {
+    position: absolute;
+    right: 0;
+    margin: 20px;
+    max-width: 300px;
+    padding: 16px;
+    background-color: white;
+  }
+=======
 .container {
   position: absolute;
   right: 0;
@@ -28,6 +47,7 @@
 .row{
   height:50px;
 }
+>>>>>>> master
   
   /* Full-width input fields */
     input[type=text], input[type=password] {

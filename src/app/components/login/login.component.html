@@ -1,26 +1,35 @@
 <div *ngIf="error" class="alert alert-danger">{{error}}</div>
-<div class="row">
+<div class="navbar navbar-expand navbar-dark bg-dark">
   <div class="col‑xs‑12">
+<<<<<<< HEAD
+   <ul class="navbar-nav">
+    <li routerLinkActive="active"> <a [routerLink]="['/login']" >Login</a></li>
+    <li *ngIf="authenticationService.isLoggedIn"><a [routerLink]="['/home']" >User Home</a></li>
+    <li *ngIf="authenticationService.isLoggedIn"><a [routerLink]="['/profile']" >User Profile</a></li>
+    <li routerLinkActive="active"><a [routerLink]="['/register']" >Register New User</a></li>
+    <li *ngIf="authenticationService.isLoggedIn"><a [routerLink]="['/logout']" >Logout</a></li>
+=======
    <ul class="nav nav‑pills">
     <li *ngIf="loginservice.isUserLoggedIn()" [routerLink]="['/login']" >Login</li>
     <li *ngIf="loginservice.isUserLoggedIn()" [routerLink]="['/home']" >User Home</li>
     <li *ngIf="loginservice.isUserLoggedIn()" [routerLink]="['/profile']" >User Profile</li>
     <li *ngIf="loginservice.isUserLoggedIn()" [routerLink]="['/register']" >Register New User</li>
     <li *ngIf="loginservice.isUserLoggedIn()" [routerLink]="['/logout']" >Logout</li>
+>>>>>>> master
    </ul>
  </div>
 </div>
 <div class="bg-img container">
-  <form class="logincontainer">
+  <form class="logincontainer form-login" [formGroup]="loginForm" (ngSubmit)="loginUser()">
     <h1>Login</h1>
 
     <label for="email"><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" [(ngModel)]="email"required>
+    <input type="text" placeholder="Enter Email" name="email" required formControlName="email">
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" [(ngModel)]="password" required>
+    <input type="password" placeholder="Enter Password" name="psw" required formControlName="password">
 
-    <button (click)=checkLogin() class="btn">Login</button>
+    <button (click)=loginUser() class="btn">Login</button>
     <a routerLink="/register" class="btn btn-link">Register</a>
   </form>
 </div>

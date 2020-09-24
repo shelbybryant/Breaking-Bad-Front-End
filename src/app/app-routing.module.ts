@@ -8,12 +8,18 @@ import { RegisterComponent } from './components/register/register.component';
 import { TriviagameComponent } from './components/triviagame/triviagame.component';
 import { UserComponent } from './components/user/user.component';
 import { LogoutComponent } from './components/logout/logout.component';
-import { AuthGuardService } from 'src/app/services/auth-guard.service';
+import { AuthGuard } from 'src/app/services/auth-guard.service';
+import { UserQuotesComponent } from './components/user-quotes/user-quotes.component';
 
 
 
 const routes: Routes = [
 
+  {
+    path: 'profile/:userId',
+    component: UserQuotesComponent,
+    
+  },
   {
     path: '',
     component: LoginComponent
@@ -25,27 +31,26 @@ const routes: Routes = [
   {
     path: 'logout',
     component: LogoutComponent,
-    canActivate:[AuthGuardService]
+    canActivate:[AuthGuard]
   },
   {
     path: 'home',
     component: HomeComponent,
-    canActivate:[AuthGuardService]
+    canActivate:[AuthGuard]
   },
   {
-    path: 'profile',
+    path: 'profile/:userId',
     component: ProfileComponent,
-    canActivate:[AuthGuardService]
+    canActivate:[AuthGuard]
   },
   {
     path: 'register',
     component: RegisterComponent,
-    canActivate:[AuthGuardService]
   },
   {
     path: 'user',
     component: UserComponent,
-    canActivate:[AuthGuardService]
+    canActivate:[AuthGuard]
   },
   {
     path: 'triviagame',
