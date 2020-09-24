@@ -7,30 +7,70 @@
  */
 
 import { Injectable } from '@angular/core';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
+  private loggedInStatus = false;
+  endpoint: string = 'http://localhost:4200/';
+  headers = new HttpHeaders().set('Content-Type', 'application/json');
+  currentUser = {};
 
-  constructor() { }
 
-  authenticate(username, password) {
-    if (username === "batman" && password === "password") {
-      sessionStorage.setItem('username', username)
-      return true;
-    } else {
-      return false;
+  constructor(
+    private http: HttpClient,
+    public router: Router) {}
+
+    getHttp(){
+      return this.http;
     }
+
+    setLoggedIn(value:boolean){
+      this.loggedInStatus = value
+    }
+    /*
+    * This method returns true if the user is logged in else returns false.
+    */
+    isLoggedIn(): boolean {
+      return this.loggedInStatus;
+    }
+
+    /*
+    * This method removes the token from local storage and logs the user out
+    */
+    logout() {
+      sessionStorage.removeItem('User')
+      this.router.navigate(['login']);
+    }
+
+  // User profile
+  getUserProfile(id): Observable<any> {
+    let u = `${this.endpoint}/profile/${id}`;
+    //let bb = `${this.endpoint}/home`;
+
+    return this.http.get(u, { headers: this.headers }).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
   }
 
-  isUserLoggedIn() {
-    let user = sessionStorage.getItem('username')
-    console.log(!(user === null))
-    return !(user === null)
-  }
-
-  logOut() {
-    sessionStorage.removeItem('username')
+  // Error 
+  handleError(error: HttpErrorResponse) {
+    let msg = '';
+    if (error.error instanceof ErrorEvent) {
+      // client-side error
+      msg = error.error.message;
+    } else {
+      // server-side error
+      msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    return throwError(msg);
   }
 }

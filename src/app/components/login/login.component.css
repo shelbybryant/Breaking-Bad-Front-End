@@ -2,13 +2,9 @@ body, html {
     height: 100%;
   }
   
-  * {
-    box-sizing: border-box;
-  }
-  
   .bg-img {
     /* The image used */
-    background-image: url("/assets/bb.jpg");
+    background-image: url("/assets/cast.jpg");
   
     /* Control the height of the image */
     min-height: 500px;
@@ -20,26 +16,16 @@ body, html {
     position: relative;
   }
   
-  /* Add styles to the form container */
-  .container {
-    position: absolute;
-    right: 0;
-    margin: 20px;
-    max-width: 300px;
-    padding: 16px;
-    background-color: white;
-  }
-  
-  /* Full-width input fields */
-    input[type=text], input[type=password] {
+  /* input fields */
+    #username, #password {
     width: 100%;
-    padding: 15px;
-    margin: 5px 0 22px 0;
+    padding: 5px 5px 5px 2px;
+    margin: 0px;
     border: none;
     background: #f1f1f1;
   }
   
-  input[type=text]:focus, input[type=password]:focus {
+  input[type=text]:focus {
     background-color: #ddd;
     outline: none;
   }
