@@ -13,7 +13,7 @@ import { Quotes } from 'src/app/models/quotes';
 
 export class ProfileComponent implements OnInit {
 
-  constructor(public authenticationService: AuthenticationService, private actRoute: ActivatedRoute, private quoteser: GetSavedQuoteService) {
+  constructor(public authenticationService: AuthenticationService, private actRoute: ActivatedRoute, private quoteService: GetSavedQuoteService) {
     // let id = this.actRoute.snapshot.paramMap.get('id');
     // this.authenticationService.getUserProfile(id).subscribe(res => {
     //   this.authenticationService.currentUser = res.msg;
@@ -36,7 +36,7 @@ export class ProfileComponent implements OnInit {
     // const pathArray = window.location.pathname.split('/');
     // console.log("path array:", pathArray);
     // const userId = parseInt(pathArray[pathArray.length - 1], 10);
-    this.quoteser.pullSavedQuotes(1).subscribe(
+    this.quoteService.pullSavedQuotes().subscribe(
       (response: Quotes[]) => {
         this.quotes = response;
       }

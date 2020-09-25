@@ -10,10 +10,17 @@ export class GetSavedQuoteService {
 
   constructor(private http: HttpClient) { }
 
-  
 
-  pullSavedQuotes(userId:number) {
-    console.log("pull saved quotes - userId:", userId);
-    return this.http.get<any>('http://localhost:8080/BreakingBad/quote/' + userId); 
+  userId:number;
+
+  pullSavedQuotes() {
+    console.log("pull saved quotes - userId:", this.userId);
+    return this.http.get<any>('http://localhost:8080/BreakingBad/quote/' + this.userId); 
    }
+
+   setUserID(id:number) {
+     this.userId = id;
+   }
+
 }
+
