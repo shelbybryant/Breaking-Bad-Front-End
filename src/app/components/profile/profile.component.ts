@@ -13,7 +13,8 @@ import { Quotes } from 'src/app/models/quotes';
 
 export class ProfileComponent implements OnInit {
 
-  constructor(public authenticationService: AuthenticationService, private actRoute: ActivatedRoute, private quoteService: GetSavedQuoteService) {
+  constructor(public authenticationService: AuthenticationService, private actRoute: ActivatedRoute, 
+    private quoteService: GetSavedQuoteService) {
     // let id = this.actRoute.snapshot.paramMap.get('id');
     // this.authenticationService.getUserProfile(id).subscribe(res => {
     //   this.authenticationService.currentUser = res.msg;

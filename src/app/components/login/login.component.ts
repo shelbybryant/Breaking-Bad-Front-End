@@ -40,12 +40,12 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    localStorage.clear();
     var formData: any = new FormData();
     var email = this.loginForm.get('email').value;
     console.log('email = ' + email);
     //var email = formData.append("email", this.loginForm.get('email').value);
     var formPassword = this.loginForm.get('password').value;
-    console.log(formData);
     this.authenticationService.getHttp().get('http://localhost:8090/BreakingBad/login/' + email, { headers:email }).subscribe(
       (response: User ) => 
       { this.user = response;

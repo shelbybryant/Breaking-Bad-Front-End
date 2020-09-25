@@ -42,6 +42,10 @@ export class RegisterComponent implements OnInit {
      })
   }
   ngOnInit() {}
+
+  onRegister(){
+    this.router.navigate(['login']);
+  }  
   
   registerUser() {
     var formData: any = new FormData();
@@ -52,25 +56,20 @@ export class RegisterComponent implements OnInit {
     password=this.user.password;
     screenName=this.user.screenName;
     let u = new User(0, screenName, email, password, null, null);
-    this.registerForm.reset()
+    //this.registerForm.reset()
     this.router.navigate(['login']);
     this.saveUser(u);
   }
 
   saveUser(u:User): Observable<User> {
     let body: User = u;
-    return this.http.post<User>('http://localhost:8080/BreakingBad/register', body)
-    /*return this.authenticationService.getHttp().post<any>(`${this.endpoint}/login`, user)
+    return this.http.post<User>('http://localhost:8080/BreakingBad/register', body);
+    /*return this.authenticationService.getHttp().post<any>(`${this.endpoint}/login`, body)
       .subscribe((res: any) => {
        this.registerForm.reset()
        this.router.navigate(['login']);
         })
         alert("New User registered successfully.")
-
-        saveQuote(q:Quotes): Observable<Quotes> {
-          let body: Quotes = q;
-          return this.http.post<Quotes>('http://localhost:8080/BreakingBad/quote', body);
-        }
       */
     }
 }

@@ -28,7 +28,6 @@ export class AuthenticationService {
   getHttp() {
     return this.http;
   }
-
   // Error 
   handleError(error: HttpErrorResponse) {
     let msg = '';
@@ -41,7 +40,5 @@ export class AuthenticationService {
     }
     return throwError(msg);
   }
-
-  isLoggedIn(){return true;};
 
 }
