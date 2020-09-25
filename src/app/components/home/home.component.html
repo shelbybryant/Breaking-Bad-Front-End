@@ -2,8 +2,7 @@
   <div class="navbar-nav">
     <a class="nav-item nav-link" routerLink="/home"> User Home</a>
     <a class="nav-item nav-link" routerLink="/profile">User Profile</a>
-    <a class="nav-item nav-link" routerLink="/login">Login</a>
-    <a class="nav-item nav-link" routerLink="/register">Register</a>
+    <a class="nav-item nav-link" routerLink="/logout">Logout</a>   
   </div>
 </nav>
 
@@ -12,28 +11,61 @@
 
     <!-- left column Side -->
     <div class="col-3" id="col-3">
-      Leader board
-      <h3>By Quote</h3>
+      <button type="button" class="MY-BTN col" id="submit-btn">Leader Board</button>
+      <div class="card" >
+        <div class="card-header" style="text-align:center">
+          Top 3 Game Player
+        </div>
+        <table class="card-table table">
+          <thead>
+            <tr>
+              <th scope="col">Screen Name</th>
+              <th scope="col">Running Score</th>
+              <th scope="col">Game Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Shelbers</td>
+              <td>3</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>Aki the dobbie</td>
+              <td>3</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>Larry the Bird</td>
+              <td>2</td>
+              <td>3</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!--
+        <h3>By Quote</h3>
+        <button type="button" class="MY-BTN col" id="submit-btn" (click)="toggleVis()"> Random 3 quotes</button>
+        <div *ngFor="let q of randomQ1" [hidden]="visibility" id="q-card" class="col">
+          <h2>Random Quote ID: #{{q.quote_id}}</h2>
+          <p>Quote: {{q.quote}}</p>
+          <p>Author: {{q.author}}</p>
+          <p>Series: {{q.series}}</p>
+        </div>
+        <div *ngFor="let q of randomQ2" [hidden]="visibility" id="q-card" class="col">
+          <h2>Random Quote ID: #{{q.quote_id}}</h2>
+          <p>Quote: {{q.quote}}</p>
+          <p>Author: {{q.author}}</p>
+          <p>Series: {{q.series}}</p>
+        </div>
+        <div *ngFor="let q of randomQ3" [hidden]="visibility" id="q-card" class="col">
+          <h2>Random Quote ID: #{{q.quote_id}}</h2>
+          <p>Quote: {{q.quote}}</p>
+          <p>Author: {{q.author}}</p>
+          <p>Series: {{q.series}}</p>
+        </div>
+      -->
 
-      <button type="button" class="MY-BTN col" id="submit-btn" (click)="toggleVis()"> Random 3 quotes</button>
-      <div *ngFor="let q of randomQ1" [hidden]="visibility" id="q-card" class="col">
-        <h2>Random Quote ID: #{{q.quote_id}}</h2>
-        <p>Quote: {{q.quote}}</p>
-        <p>Author: {{q.author}}</p>
-        <p>Series: {{q.series}}</p>
-      </div>
-      <div *ngFor="let q of randomQ2" [hidden]="visibility" id="q-card" class="col">
-        <h2>Random Quote ID: #{{q.quote_id}}</h2>
-        <p>Quote: {{q.quote}}</p>
-        <p>Author: {{q.author}}</p>
-        <p>Series: {{q.series}}</p>
-      </div>
-      <div *ngFor="let q of randomQ3" [hidden]="visibility" id="q-card" class="col">
-        <h2>Random Quote ID: #{{q.quote_id}}</h2>
-        <p>Quote: {{q.quote}}</p>
-        <p>Author: {{q.author}}</p>
-        <p>Series: {{q.series}}</p>
-      </div>
     </div>
     <!-- right column Side -->
     <div class="col-9" id="col-9">
@@ -44,8 +76,8 @@
       <!-- row 2-->
       <div class="row" id="row-2">
         <!-- buttons-->
-        <button type="button" class="MY-BTN" id="by-quote-btn"> Start Game</button>
-        <div id="game-result">*** yes, you got it / no, you are wrong / currrent score XXX like that message goes here</div>
+        <button type="button" class="MY-BTN" id="by-quote-btn" [routerLink]="['/home']" (click)="refreshPage()"> Start Quiz</button>
+        <div id="game-result"></div>
       </div>
       <!-- row 3 -->
       <div id="row-3" class="row">
@@ -53,9 +85,7 @@
         <div class="card" style="width: 18rem;">
           <div class="card-header text-left">
             Select a character:
-            <p *ngIf="isSelectedCharacter" [ngClass]="'success'">
-              *** Select character Form submitted successfully.
-            </p>
+            
             <!-- Select Character Form starts --------------------------------------------------------------->
             <form #myForm="ngForm" (ngSubmit)="submitRadioButtonForm(myForm)">
               <div>
@@ -66,13 +96,17 @@
                     {{item.charactername}}
                   </li>
                 </ul>
-                <div *ngIf=" myForm.submitted && !isSelectedCharacter" [ngClass]="'error'">
-                  *** Select a character.
-                </div>
               </div>
 
               <!-- select character button Button -->
               <button type="submit" class="MY-BTN" id="radio-btn">Select A Character</button>
+
+              <div *ngIf="isSelectedCharacter" [ngClass]="'success'">
+                *** Submitted successfully.
+              </div>
+              <div *ngIf=" myForm.submitted && !isSelectedCharacter" [ngClass]="'error'">
+                *** Select a character.
+              </div>
             </form>
           </div>
         </div> <!-- end of first card div-->
@@ -91,9 +125,7 @@
         <div class="card" style="width: 64rem;">
           <div class="card-header">
             Quiz:
-            <p *ngIf="isValidFormSubmitted" [ngClass]="'success'">
-              *** Form submitted successfully.
-            </p>
+            
           </div>
           <!-- Select Answers Form starts ----------------------------------------------------------------->
           <form #questionsForm="ngForm" (ngSubmit)="onQuestionFormSubmit(questionsForm)">
@@ -127,7 +159,7 @@
                     </div>
                   </td>
                 </tr>
-                
+
                 <tr>
                   <td rowspan="5">Question #3:</td>
                   <td> Which quote belongs to this character?</td>
@@ -155,9 +187,13 @@
                     <div *ngIf="question3.invalid && questionsForm.submitted && !isValidFormSubmitted" [ngClass]="'error'">
                       *** question-3 answer required.
                     </div>
+
                   </td>
                 </tr>
-                <tr><td colspan="2"><button id="submit-quiz">Submit Quiz</button></td></tr>
+                <tr><td colspan="3"><button id="submit-quiz">Submit Quiz</button></td></tr>
+                <div *ngIf="isValidFormSubmitted" [ngClass]="'success'">
+                  *** Quiz submitted successfully.
+                </div>
               </tbody>
             </table>
           </form>

@@ -10,15 +10,14 @@ import { GamesService } from '../../services/games.service';
 import { Quote } from '@angular/compiler';
 
 
-
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
- 
+
+  game: Games;
 
   // For Game Model
   public newGameId: number;
@@ -33,8 +32,8 @@ export class HomeComponent implements OnInit {
 
   isValidFormSubmitted = false;
 
-  //
   user: User;
+  users: User[];
 
   // responses for listing random 3 quotes
   public randomQ1: any;
@@ -69,6 +68,9 @@ export class HomeComponent implements OnInit {
   public quote_id_list: number[] = [];
   public quote_author_list: any[] = [];
 
+  // top 3
+  public top3User: any[] = [];
+
   // placeholder for another author, quote,
   public tempAuthor1: string;
   public tempAuthor2: string; 
@@ -81,17 +83,13 @@ export class HomeComponent implements OnInit {
   public shuffledArr: any;
 
   constructor(   
-    //private quoteService: QuotesService,
     private gameService: GamesService,
     private router: Router,
-
-  ) {
-    
-  }
+  ) {}
 
   ngOnInit(): void {
     this.displayRandomQuotes();
-    
+    this.getAllUser();
   }
 
   // button action for toggle
@@ -110,14 +108,9 @@ export class HomeComponent implements OnInit {
         this.randomQ2 = data[1];
         this.randomQ3 = data[2];
 
-        //console.log(data[0]);
-        //console.log(data[1]);
-        //console.log(data[2]);
-
       }, () => {
         console.log("something went wrong");
       });
-
   }
 
   // when "random char" button click make "by-char-domain" div visible
@@ -175,7 +168,6 @@ export class HomeComponent implements OnInit {
         this.tempAuthor2 = this.itemsList[this.arrIndex2].quoteauthor;
       }
 
-
     }  
     console.log("character id I grabbed : " + this.charID);
     console.log("selected author I grabbed" + this.authorName);
@@ -228,8 +220,6 @@ export class HomeComponent implements OnInit {
     console.log("other quote 2 ");
     this.getRandomQuoteBySelectedCharacter(modifiedName2);
     //console.log(this.selectedCharacterQuote[0].author);
-   
-
     
   }
 
@@ -245,8 +235,7 @@ export class HomeComponent implements OnInit {
         console.log("could not get character by id.");
       });
   }
-
-  
+ 
   // this is the author/ character selected and the quote is the right answer for question#3
   getRandomQuoteBySelectedCharacter(author: string) {
     this.gameService.getRendomQuoteBySelectedAuthor(author).subscribe(
@@ -281,8 +270,7 @@ export class HomeComponent implements OnInit {
         //console.log(this.quote_list);
         //let shuffledQuotesData = this.shuffle(this.quote_list);
         //console.log("after shuffle ");
-        //console.log(shuffledQuotesData);
-        
+        //console.log(shuffledQuotesData);       
 
         //let myArr = [0, 1, 2, 3, 4];
         //console.log(myArr);
@@ -294,8 +282,6 @@ export class HomeComponent implements OnInit {
         console.log("could not get random quote by selected character or author.");
       });
   }
-
-  
 
   //************** Questions Selection Forms******************************//
   onQuestionFormSubmit(form: NgForm) {
@@ -366,7 +352,8 @@ export class HomeComponent implements OnInit {
     }
     console.log(this.sumOfScore);
     console.log("your score is = " + this.sumOfScore);
-
+    let scoreResult = "Your current score: " + this.sumOfScore;
+    document.getElementById('game-result').innerText = scoreResult;
 
     this.newScore = this.sumOfScore;
     this.sumOfScore = 0;
@@ -376,33 +363,31 @@ export class HomeComponent implements OnInit {
     return this.sumOfScore;
   }
 
-  sendGame(): void{
+  /************************************ SAVE GAME TO DB  **********************/
+  sendGame(){
 
-    this.gameService.getUser(1).subscribe(
-      (response7: User) => {
-        this.user = response7;
-      }
-    )
-    console.log(this.user);
+    //this.gameService.getUser(1).subscribe(
+      //(response7: User) => {
+        //this.user = response7;
+      //}
+    //)
+    //console.log(this.user);
 
     let now = new Date();
     console.log("now " + now);
 
-    let game = new Games(0, this.newScore, now, null);
+    let game = new Games(0, this.newScore, now, this.gameService.userId);
     console.log(game);
+
     this.gameService.addGame(game).subscribe(
-      (response: User) => {
-        this.user = response;
+      (response: Games) => {
+        this.game = response;
       }
     )
   }
 
 /*****************  print shuffled the quotes to view **************************/
-  printShuffledQuotes(array: any) {
-   
-
-  }
-
+  printShuffledQuotes(array: any) {}
 
   /*****************  shuffle the quotes **************************/
   shuffle(array: any): any {
@@ -417,7 +402,25 @@ export class HomeComponent implements OnInit {
     return array;
   }
 
+  refreshPage() {
+    window.location.reload();
+  }
+
+/*************************** ***********************/
+  getAllUser() {
+    this.gameService.getAllUser().subscribe(
+      (response: User[]) => {
+        this.users = response;
+        console.log(this.users);
+      }
+      
+    );
+
+
+  }
+
   
+
 
 }
 

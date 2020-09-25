@@ -11,6 +11,7 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 import { Router } from '@angular/router';
 import { UserComponent } from 'src/app/components/user/user.component';
 import { AuthenticationService } from 'src/app/services/authentication-service.service';
+import { GamesService } from '../../services/games.service';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,7 @@ export class LoginComponent implements OnInit {
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   currentUser = {};
 
-  constructor(public fb: FormBuilder, public authenticationService: AuthenticationService, public router: Router) {
+  constructor(public fb: FormBuilder, public authenticationService: AuthenticationService, public router: Router, public gameService: GamesService) {
     this.loginForm = this.fb.group({
       email: [''],
       password: ['']
@@ -65,6 +66,9 @@ export class LoginComponent implements OnInit {
         //   this.currentUser = res;
         //   this.router.navigate(['profile/' + res.msg._id]);
         // })
+
+        this.gameService.setUserId(res.userId);
+
       })
   }
 }

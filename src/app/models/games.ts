@@ -13,18 +13,18 @@ export class Games {
   public gameId: number;
   public score: number;
   public gameSubmitted: Date;
-  public user: User;
+  public userId: number;
 
   constructor(
     gameId: number,
     score: number,
     gameSubmitted: Date,
-    user: User
+    userId: number
   ) {
     this.gameId = gameId;
     this.score = score;
     this.gameSubmitted = gameSubmitted;
-    this.user = user;
+    this.userId = userId;
   }
 
 }
