@@ -47,7 +47,7 @@ export class GamesService {
 
   addGame(game: Games): Observable<User>{
     let body: Games = game;
-    return this.http.post<User>('http://localhost:8080/BreakingBad/',  game);
+    return this.http.post<User>('http://localhost:8080/BreakingBad/game',  game);
 
   }
 
