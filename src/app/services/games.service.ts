@@ -4,13 +4,18 @@ import { Observable, forkJoin, from } from 'rxjs';
 import { Games } from '../models/games';
 import { User } from '../models/user';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class GamesService {
   private baseUrl = 'http://localhost:8080/BreakingBad/';
+
+
+
   constructor(private http: HttpClient) { }
 
+  userId: number;
 
   //getQuotes(): Observable<Quotes[]> {
 
@@ -45,9 +50,11 @@ export class GamesService {
     return response6;
   }
 
-  addGame(game: Games): Observable<User>{
+  addGame(game: Games): Observable<any>{
     let body: Games = game;
-    return this.http.post<User>('http://localhost:8080/BreakingBad/',  game);
+
+    return this.http.post<User>('http://localhost:8080/BreakingBad/game',  game);
+
 
   }
 
@@ -55,5 +62,15 @@ export class GamesService {
     let response7 = this.http.get<any>('http://localhost:8080/BreakingBad/user/' + id);
     return response7;
   }
+
+  setUserId(id: number) {
+    this.userId = id;
+  }
+
+  getAllUser() {
+    let response8 = this.http.get<User[]>('http://localhost:8080/BreakingBad/user/');
+    return response8;
+  }
+
 
 }

@@ -12,6 +12,10 @@ import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication-service.service';
 
+import { GetSavedQuoteService } from 'src/app/services/get-saved-quote.service';
+import { GamesService } from 'src/app/services/games.service';
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -26,7 +30,9 @@ export class LoginComponent implements OnInit {
   currentUser = {};
   isLoggedIn=false;
 
-  constructor(public fb: FormBuilder, public authService: AuthenticationService, public router: Router) {
+
+  constructor(public fb: FormBuilder, public authenticationService: AuthenticationService, public router: Router, public quoteService: GetSavedQuoteService, public gameService: GamesService ) {
+
     this.loginForm = this.fb.group({
       email: [''],
       password: ['']

@@ -12,8 +12,10 @@ import { RegisterComponent } from './components/register/register.component';
 import { TriviagameComponent } from './components/triviagame/triviagame.component';
 import { LogoutComponent } from './components/logout/logout.component';
 
+
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+
 import { UserQuotesComponent } from './components/user-quotes/user-quotes.component';
 
 
