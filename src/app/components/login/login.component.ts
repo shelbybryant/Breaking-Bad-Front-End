@@ -14,6 +14,7 @@ import { AuthenticationService } from 'src/app/services/authentication-service.s
 
 import { GetSavedQuoteService } from 'src/app/services/get-saved-quote.service';
 import { GamesService } from 'src/app/services/games.service';
+import { UserComponent } from '../userComponent/user.component';
 
 
 @Component({
@@ -24,7 +25,7 @@ import { GamesService } from 'src/app/services/games.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   error: string;
-  authUrl: string = 'http://localhost:8080/BreakingBad';
+  endpoint: string = 'http://localhost:8080/BreakingBad';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   user: User;
   currentUser = {};
@@ -39,33 +40,61 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  onSubmit() {
-    var formData: any = new FormData();
-    var email = this.loginForm.get('email').value;
-    console.log('email = ' + email);
-    //var email = formData.append("email", this.loginForm.get('email').value);
-    var formPassword = this.loginForm.get('password').value;
-    console.log(formData);
-    this.authService.getHttp().get('http://localhost:8090/BreakingBad/login/' + email, { headers:email }).subscribe(
-      (response: User ) => 
-      { this.user = response;
-        console.log(this.user)
-        if (this.user == null){
-          localStorage.setItem('isLoggedIn', 'false');
-        } else {
-          localStorage.setItem('user', JSON.stringify(this.user));
-          if (this.user.password ==formPassword) {
-            localStorage.setItem('isLoggedIn', 'true');
-            //Set current user for this class
-            this.currentUser = this.user;
-            // this.router.navigate(['profile/' + res.msg._id]);
-            this.router.navigate(['home']);
-          } else {
-            this.router.navigate(['home']);
-            alert("Oops. Something went wrong. Please login again.")
-          }
-        }
-      }, (error) => console.log(error)
-    )}
+
+  loginUser() {
+    this.login(this.loginForm.value)
+    this.loginForm.reset
+  }
+  
+  login(user: UserComponent) {
+      return this.authenticationService.getHttp().post<any>(`${this.endpoint}/login`, user)
+        .subscribe((res: any) => {
+          localStorage.setItem('isLoggedIn', 'true');
+          localStorage.setItem('userId', res.userId);
+
+          this.currentUser = res;
+          this.authenticationService.currentUser = res;
+
+          this.quoteService.setUserID(res.userId);
+          this.gameService.setUserId(res.userId);
+
+          this.router.navigate([`/home`]);
+
+          // this.authenticationService.getUserProfile(res._id).subscribe((res) => {
+          //   this.currentUser = res;
+          //   this.router.navigate(['home' + res.msg._id]);
+          // })
+        })
+    }
+
+
+  // onSubmit() {
+  //   var formData: any = new FormData();
+  //   var email = this.loginForm.get('email').value;
+  //   console.log('email = ' + email);
+  //   //var email = formData.append("email", this.loginForm.get('email').value);
+  //   var formPassword = this.loginForm.get('password').value;
+  //   console.log(formData);
+  //   this.authService.getHttp().get('http://localhost:8090/BreakingBad/login/' + email, { headers:email }).subscribe(
+  //     (response: User ) => 
+  //     { this.user = response;
+  //       console.log(this.user)
+  //       if (this.user == null){
+  //         localStorage.setItem('isLoggedIn', 'false');
+  //       } else {
+  //         localStorage.setItem('user', JSON.stringify(this.user));
+  //         if (this.user.password ==formPassword) {
+  //           localStorage.setItem('isLoggedIn', 'true');
+  //           //Set current user for this class
+  //           this.currentUser = this.user;
+  //           // this.router.navigate(['profile/' + res.msg._id]);
+  //           this.router.navigate(['home']);
+  //         } else {
+  //           this.router.navigate(['home']);
+  //           alert("Oops. Something went wrong. Please login again.")
+  //         }
+  //       }
+  //     }, (error) => console.log(error)
+  //   )}
   ngOnInit() {};
 }

@@ -8,6 +8,8 @@ import { User } from '../../models/user';
 import { Games } from '../../models/games';
 import { GamesService } from '../../services/games.service';
 import { Quote } from '@angular/compiler';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 
 @Component({
