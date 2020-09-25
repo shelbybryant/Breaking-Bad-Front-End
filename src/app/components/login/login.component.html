@@ -6,7 +6,7 @@
 <h2 id="bbheader">Test your Breaking Bad Trivia</h2>
 <div class="bg-img">
   <div class = "row">
-  <form class="col-sm-12 form-inline" [formGroup]="loginForm" (ngSubmit)="z()" novalidate>
+  <form class="col-sm-12 form-inline" [formGroup]="loginForm" (ngSubmit)="loginUser()" novalidate>
     <div id="loginfields" class="form-group col-sm-4 mb-2">
       <label for="email"></label>
       <input type="text" formControlName="email" id="email" placeholder="Enter Email" required>
