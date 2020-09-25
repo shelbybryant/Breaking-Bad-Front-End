@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
             // this.router.navigate(['profile/' + res.msg._id]);
             this.router.navigate(['home']);
           } else {
-            this.router.navigate(['home']);
+            this.router.navigate(['login']);
             alert("Oops. Something went wrong. Please login again.")
           }
         }
