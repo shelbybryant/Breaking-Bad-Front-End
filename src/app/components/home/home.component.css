@@ -1,26 +1,18 @@
-
 #home-comp {
-  /**/background-color: aqua;
   margin: 0;
-  /**/padding: 10px;
+  padding: 10px;
 }
 
 #col-9 {
-  padding: 1rem;
   border: 1px solid #d8dde6;
-  background-color: aliceblue;
-  /*height: 100vh;*/
 }
 
 #col-3 {
   padding: 1rem;
   border: 1px solid #d8dde6;
-  background-color: antiquewhite;
-  /*height: 100vh;*/
 }
 
 #row-1 {
-  border: 1px solid #d8dde6;
   height: 30vh;
 }
 
@@ -31,7 +23,6 @@
 
 #row-3 {
   border: 1px solid #d8dde6;
-  /*height: 60vh; */
 }
 
 .MY-BTN {
@@ -81,15 +72,24 @@
 }
 
 .invalid-feedback {
+  font-weight: bolder;
   color: red;
 }
 .error {
+  font-weight: bolder;
   color: red;
 }
 
 .success {
+  font-weight: bolder;
   color: green;
 }
 ul {
   list-style-type: none;
+}
+#game-result {
+  font-weight: bolder;
+  color: blue;
+  padding-left:45rem;
+  padding-top: 1rem;
 }
