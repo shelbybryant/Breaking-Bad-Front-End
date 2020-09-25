@@ -1,4 +1,5 @@
 <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+<div class="bg-img">
 <form [formGroup]="registerForm" (ngSubmit)="registerUser()">
     <div class="container">
       <h1>Register</h1>
@@ -23,3 +24,4 @@
       <p>Already have an account? <a href="#">Login</a>.</p>
     </div>
   </form>
+</div>

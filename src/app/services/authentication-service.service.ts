@@ -28,51 +28,6 @@ export class AuthenticationService {
   getHttp() {
     return this.http;
   }
-  
-  loginUser(email): Observable<any>{
-    return this.http.post<any>(`${this.endpoint}/login`, email);
-  }
-
-  /*
-  login(user: User) {
-    console.log("user:", user);
-    return this.authenticationService.getHttp().post<any>(`${this.endpoint}/login`, user)
-      .subscribe((res: any) => {
-        console.log("\n\nServer response:", res);
-        
-        localStorage.setItem('isLoggedIn', 'true');
-        localStorage.setItem('userId', res.userId);
-        //Set current user for this class
-        this.currentUser = res;
-        
-        //Set auth service's current user
-        this.authenticationService.currentUser = res;
-
-        
-        // this.router.navigate(['profile/' + res.msg._id]);
-        this.router.navigate([`profile/${res.userId}`]);
-  
-  /*
-  * This method returns true if the user is logged in else returns false.
-  */
-  get isLoggedIn(): boolean {
-    return localStorage.getItem('isLoggedIn') === 'true';
-    // let authToken = localStorage.getItem('access_token');
-    // return (authToken !== null) ? true : false;
-  }
-
-  // User profile
-  getUser(id): Observable<any> {
-    let bb = `${this.endpoint}/profile/${id}`;
-    //let bb = `${this.endpoint}/home`;
-
-    return this.http.get(bb, { headers: this.headers }).pipe(
-      map((res: Response) => {
-        return res || {}
-      }),
-      catchError(this.handleError)
-    )
-  }
 
   // Error 
   handleError(error: HttpErrorResponse) {
@@ -86,5 +41,7 @@ export class AuthenticationService {
     }
     return throwError(msg);
   }
+
+  isLoggedIn(){return true;};
 
 }

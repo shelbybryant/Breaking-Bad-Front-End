@@ -13,8 +13,7 @@ import { TriviagameComponent } from './components/triviagame/triviagame.componen
 import { LogoutComponent } from './components/logout/logout.component';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from './services/authinterceptor.service';
+import { HttpClientModule } from '@angular/common/http';
 import { UserQuotesComponent } from './components/user-quotes/user-quotes.component';
 
 
@@ -40,11 +39,7 @@ import { UserQuotesComponent } from './components/user-quotes/user-quotes.compon
     FormsModule
 
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: AuthInterceptor,
-    multi: true
-  }],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -6,9 +6,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
 
 import { TriviagameComponent } from './components/triviagame/triviagame.component';
-import { UserComponent } from './components/user/user.component';
+//import { UserComponent } from './components/user/user.component';
 import { LogoutComponent } from './components/logout/logout.component';
-import { AuthGuard } from 'src/app/services/auth-guard.service';
 import { UserQuotesComponent } from './components/user-quotes/user-quotes.component';
 
 
@@ -31,26 +30,19 @@ const routes: Routes = [
   {
     path: 'logout',
     component: LogoutComponent,
-    canActivate:[AuthGuard]
   },
   {
     path: 'home',
     component: HomeComponent,
-    canActivate:[AuthGuard]
   },
   {
     path: 'profile/:userId',
     component: ProfileComponent,
-    canActivate:[AuthGuard]
+   
   },
   {
     path: 'register',
     component: RegisterComponent,
-  },
-  {
-    path: 'user',
-    component: UserComponent,
-    canActivate:[AuthGuard]
   },
   {
     path: 'triviagame',
