@@ -8,15 +8,15 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
-import { UserComponent } from './components/user/user.component';
+//import { UserComponent } from './components/user/user.component';
 import { TriviagameComponent } from './components/triviagame/triviagame.component';
 import { LogoutComponent } from './components/logout/logout.component';
 
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from './services/authinterceptor.service';
-import { UserQuotesComponent } from './components/user-quotes/user-quotes.component';
 
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
+import { UserQuotesComponent } from './components/user-quotes/user-quotes.component';
 
 
 
@@ -28,7 +28,7 @@ import { UserQuotesComponent } from './components/user-quotes/user-quotes.compon
     ProfileComponent,
     RegisterComponent,
     TriviagameComponent,
-    UserComponent,
+    //UserComponent,
     LogoutComponent,
     UserQuotesComponent
   ],
@@ -41,11 +41,7 @@ import { UserQuotesComponent } from './components/user-quotes/user-quotes.compon
     FormsModule
 
   ],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: AuthInterceptor,
-    multi: true
-  }],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

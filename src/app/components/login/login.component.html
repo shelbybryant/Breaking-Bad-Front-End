@@ -1,30 +1,25 @@
 <div *ngIf="error" class="alert alert-danger">{{error}}</div>
 <div class="navbar navbar-expand navbar-dark bg-dark">
   <div class="col‑xs‑12">
-   <ul class="navbar-nav">
-    <li routerLinkActive="active"> <a [routerLink]="['/login']" >Login</a></li>
-    <li *ngIf="authenticationService.isLoggedIn"><a [routerLink]="['/home']" >User Home</a></li>
-    <li *ngIf="authenticationService.isLoggedIn"><a [routerLink]="['/profile']" >User Profile</a></li>
-    <li routerLinkActive="active"><a [routerLink]="['/register']" >Register New User</a></li>
-    <li *ngIf="authenticationService.isLoggedIn"><a [routerLink]="['/logout']" >Logout</a></li>
-   </ul>
  </div>
 </div>
-<div class="bg-img container">
-  <form class="logincontainer form-login" [formGroup]="loginForm" (ngSubmit)="loginUser()">
-    <h1>Login</h1>
-
-    <label for="email"><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" required formControlName="email">
-
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required formControlName="password">
-
-    <button (click)=loginUser() class="btn">Login</button>
+<h2 id="bbheader">Test your Breaking Bad Trivia</h2>
+<div class="bg-img">
+  <div class = "row">
+  <form class="col-sm-12 form-inline" [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+    <div id="loginfields" class="form-group col-sm-4 mb-2">
+      <label for="email"></label>
+      <input type="text" formControlName="email" id="email" placeholder="Enter Email" required>
+    </div>
+    <div id="loginfields" class="form-group col-sm-4 mb-2">
+      <label for="password"></label>
+      <input type="password" formControlName="password" id="password" placeholder="Enter Password" required>
+    
+    </div>
+    <button type="submit" [disabled]="!loginForm.valid" class="btn btn-dark">Login<i class="fas-fa-sign-in-alt"></i></button>
     <a routerLink="/register" class="btn btn-link">Register</a>
   </form>
 </div>
-
 
 
 

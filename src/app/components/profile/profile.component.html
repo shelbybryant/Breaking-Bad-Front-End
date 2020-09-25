@@ -1,10 +1,16 @@
 <div class="container">
+    <nav class="navbar navbar-expand navbar-dark bg-dark">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" routerLink="/home"> User Home</a>
+          <a class="nav-item nav-link" routerLink="/login">Logout</a>
+        </div>
+    </nav>
     <div class="row">
         <div class="inner-main">
             <h2 class="mb-4">User Profile</h2>
             <!--
-            <p><strong>Welcome, {{this.authenticationService.currentUser.screenName}}!</strong></p>
-            <p><strong>Email:</strong> {{this.authenticationService.currentUser.email}}</p>
+            <p><strong>Welcome, {{this.currentUser.screenName}}!</strong></p>
+            <p><strong>Email:</strong> {{this.currentUser.email}}</p>
             -->
         </div>
     </div>
