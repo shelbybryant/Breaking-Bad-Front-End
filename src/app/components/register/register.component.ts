@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication-service.service';
+import { User } from 'src/app/models/user';
+import { GetSavedQuoteService } from 'src/app/services/get-saved-quote.service';
+import { GamesService } from 'src/app/services/games.service'
 
 @Component({
   selector: 'app-register',
@@ -13,23 +16,26 @@ export class RegisterComponent implements OnInit {
   userName: string;
   userEmail: string;
   userPassword: string;
-  users: User[];
-
-  // error:string;
-  // registerForm: FormGroup;
+  screenName: string;
+  user: User;
+  registerForm: FormGroup;
+  fb: FormBuilder,
+  error:string;
+ 
   endpoint: string = 'http://localhost:8080/BreakingBad';
   constructor(
     public authenticationService: AuthenticationService,
     public router: Router,
-    public userSer: UserService
-  ) {
-    // this.registerForm = this.fb.group({
-    //   userEmail: [''],
-    //   userPassword: [''],
-    //   userName: ['']
-    // })
+    public quoteService: GetSavedQuoteService, 
+    public gameService: GamesService ) {
+  
+    this.registerForm = this.fb.group({
+       userEmail: [''],
+       userPassword: [''],
+       userName: ['']
+     })
   }
-  // public fb: FormBuilder,
+  
   
   ngOnInit() {}
   

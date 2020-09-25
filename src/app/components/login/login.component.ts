@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
     //var email = formData.append("email", this.loginForm.get('email').value);
     var formPassword = this.loginForm.get('password').value;
     console.log(formData);
-    this.authService.getHttp().get('http://localhost:8090/BreakingBad/login/' + email, { headers:email }).subscribe(
+    this.authenticationService.getHttp().get('http://localhost:8090/BreakingBad/login/' + email, { headers:email }).subscribe(
       (response: User ) => 
       { this.user = response;
         console.log(this.user)
